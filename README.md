@@ -25,7 +25,7 @@
     - または身近にそのような悩みを抱えている方がいる場合
 
 - ## 設計書
- - 画面設計　https://app.diagrams.net/#G1oeaLf7--_c-3deJcKqMux7ANkaFQt4vV
+    - 画面設計　https://app.diagrams.net/#G1oeaLf7--_c-3deJcKqMux7ANkaFQt4vV
 
 
 
