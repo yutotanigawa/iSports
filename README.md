@@ -25,8 +25,9 @@
     - または身近にそのような悩みを抱えている方がいる場合
 
 - ## 設計書
-    - 画面設計 - ユーザー https://app.diagrams.net/#G1oeaLf7--_c-3deJcKqMux7ANkaFQt4vV  
-              - 管理者  https://app.diagrams.net/#G1pZ__PBJVN2fSb2kIFAbafb9io02xm1cj  
+    - 画面設計 
+    　- ユーザー https://app.diagrams.net/#G1oeaLf7--_c-3deJcKqMux7ANkaFQt4vV  
+      - 管理者  https://app.diagrams.net/#G1pZ__PBJVN2fSb2kIFAbafb9io02xm1cj  
     - ER図  https://app.diagrams.net/#G1zGX80GhJ0H9dF4tFWcy_bbHQiAIrZRYS  
     - テーブル定義書  https://docs.google.com/spreadsheets/d/1MokkrQ8Ztm0tixruOTLLXH4A01Jq434Y/edit#gid=37616455
     - アプリケーション詳細設計  https://docs.google.com/spreadsheets/d/1D6w2bYhHHanZRqL-u3QfwCdBcGt6uqAO/edit#gid=399335769
