@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  genre_id: 1
+  user_id: 1
+  name: MyString
+  image_id: MyString
+  prefecture: 1
+  day_of_week: 1
+  frequency: 1
+  introduction: MyText
+  publication_status: 1
+
+two:
+  genre_id: 1
+  user_id: 1
+  name: MyString
+  image_id: MyString
+  prefecture: 1
+  day_of_week: 1
+  frequency: 1
+  introduction: MyText
+  publication_status: 1
