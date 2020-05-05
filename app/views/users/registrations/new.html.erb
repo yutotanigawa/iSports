@@ -1,0 +1,57 @@
+<div class="container">
+      <h2>新規会員登録</h2>
+
+  <div class="row">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+
+        <div class="field">
+          <%= f.label :名前（ニックネームでも可） %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <%= f.label :"性別" %>
+        <div class="radio-inline">
+          <%= f.radio_button :gender_status, :male %>
+          <%= f.label :男性, class: "gender_status_label" %>
+
+          <%= f.radio_button :gender_status, :female %>
+          <%= f.label :女性, class: "gender_statuslabel" %>
+        </div>
+
+        <%= f.label :生年月日 %><br />
+        <%= f.date_select :birth_date, use_month_numbers: true,
+        start_year: 1930, #入力値の開始位置（西暦）
+        end_year: (Time.now.year - 5),
+        default: Date.new(1989, 1, 1) %>
+
+        <div class="field">
+        <%= f.label :都道府県 %><br>
+        <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :パスワード確認 %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "登録" %>
+        </div>
+      <% end %>
+
+  </div>
+</div>
