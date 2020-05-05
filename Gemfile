@@ -77,7 +77,7 @@ gem 'dotenv-rails'
 # 実装用gem
 gem 'devise'
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 gem 'enum_help'
