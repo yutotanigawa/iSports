@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-    has_many teams
+    has_many :teams
 end
