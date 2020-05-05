@@ -17,4 +17,7 @@ class TeamsController < ApplicationController
 
     def destroy
     end
+
+    def applications
+    end
 end

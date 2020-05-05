@@ -7,4 +7,5 @@ class Admins::UsersController < ApplicationController
 
     def update
     end
+
 end

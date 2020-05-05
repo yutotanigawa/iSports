@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_094629) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_bookmarks_on_team_id"
+    t.index ["user_id", "team_id"], name: "index_bookmarks_on_user_id_and_team_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -73,15 +74,15 @@ ActiveRecord::Schema.define(version: 2020_05_04_094629) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.integer "genre_id"
-    t.integer "user_id"
-    t.string "name"
-    t.string "image_id"
-    t.integer "prefecture"
-    t.integer "day_of_week"
-    t.integer "frequency"
-    t.text "introduction"
-    t.integer "publication_status"
+    t.integer "genre_id", null: false
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "team_image_id"
+    t.integer "prefecture", null: false
+    t.integer "day_of_week", null: false
+    t.integer "frequency", null: false
+    t.text "introduction", null: false
+    t.integer "publication_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,12 +94,12 @@ ActiveRecord::Schema.define(version: 2020_05_04_094629) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.string "profile_image_id", null: false
+    t.string "profile_image_id"
     t.integer "gender_status", null: false
     t.integer "valid_status", default: 0, null: false
     t.date "birth_date", null: false
     t.integer "prefecture", null: false
-    t.text "introduction", null: false
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

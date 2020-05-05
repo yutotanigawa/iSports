@@ -8,10 +8,11 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
 
-  namespace :admin do
+  namespace :admins do
     root 'homes#top'
     resources :users, only: [:index,:show,:update]
     resources :teams, only: [:index,:show,:update,:destroy]
+    get 'applications' => 'teams#applications'
     resources :genres, only: [:index,:create,:edit,:update,:destroy]
   end
   # user側のルーティング

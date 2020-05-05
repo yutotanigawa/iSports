@@ -5,6 +5,4 @@ class BookmarksController < ApplicationController
     def destroy
     end
 
-    def index
-    end
 end
