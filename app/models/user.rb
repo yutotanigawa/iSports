@@ -9,6 +9,7 @@ class User < ApplicationRecord
          has_many :teams, dependent: :destroy
          has_many :bookmarks, dependent: :destroy
          has_many :bookmark_teams, through: :bookmarks, source: :teams
+         attachment :profile_image
 
          #Userモデルの各enum使用カラム
          enum valid_status: { active: 0, is_deleted: 1}
