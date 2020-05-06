@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
 
   resources :users, only:[:index,:show,:edit,:update] do
-    get 'cancel' => 'members#cancel'
+    get 'cancel' => 'users#cancel'
     patch 'withdraw' => 'users#withdraw'
     put 'withdraw' => 'users#withdraw'
   end

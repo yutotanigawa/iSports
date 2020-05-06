@@ -24,5 +24,35 @@ class User < ApplicationRecord
           徳島県:36,香川県:37,愛媛県:38,高知県:39,
           福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
         }
-      
+
+        #生年月日から年齢を算出しageクラスとする
+        attr_accessor :age
+        def age
+          d2=self.birth_date.strftime("%Y%m%d").to_i
+          d1=Date.today.strftime("%Y%m%d").to_i
+          return (d1 - d2) / 10000
+        end
+
+
+        #ユーザー名による絞り込み
+        scope :get_by_gender_status, ->(gender_status) {
+        where(gender_status: gender_status)
+        }
+        #性別による絞り込み
+        scope :get_by_prefecture, ->(prefecture) {
+        where(prefecture: prefecture)
+        }
+
+        #論理削除による退会機能
+        def withdraw!
+          if active?
+            is_deleted!
+          else
+            active!
+          end
+        end
+
+        def active_for_authentication?
+          super && self.valid_status == "active"
+        end
 end

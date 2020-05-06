@@ -1,0 +1,9 @@
+ja:
+  enums:
+    user:
+      valid_status:
+        active: "有効"
+        is_deleted: "退会済み"
+      gender_status:
+        male: "男性"
+        female: "女性"
