@@ -17,8 +17,8 @@ class TeamsController < ApplicationController
         @team = Team.new(team_params)
         @user = current_user
         @team.user_id = current_user.id
-        binding.pry
         @team.save
+        redirect_to teams_path
     end
 
     def update

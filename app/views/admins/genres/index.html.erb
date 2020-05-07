@@ -1,0 +1,41 @@
+	<div class="container table-responsive">
+		<h2>ジャンル追加/一覧</h2>
+		<div class="row">
+			<div class="col-md-8 offset-1">
+				<br>
+					<%= form_for @genre, :url => {:controller => :genres, :action => :create} do |f| %>
+						<form class="form-inline">
+							<%= f.label :ジャンル名 %>
+							<%= f.text_field :name ,class:"form-control" ,:style=>"width:300px;" %>
+							<%= f.submit '追加', class:" btn btn-shine ", :style=>"background-color:#ffb6c1; border:none; width:120px; margin-left:66px; margin-top:20px;"%>
+						</form>
+					<% end %>
+				<br>
+				<br>
+
+				<table class="table">
+					<thead style="background-color: #333333; color: white;">
+						<th>ジャンル</th>
+						<th width="50%"></th>
+						<th></th>
+					</thead>
+					<tbody>
+						<% @genres.each do |genre| %>
+							<tr>
+								<td>
+									<%= genre.name %>
+								</td>
+								<td style="text-align: center;">
+									<%= link_to '編集する',edit_admins_genre_path(genre), :url => {:controller => :gernes, :action => :edit}, class:" btn btn-primary btn-shine glyphicon glyphicon-wrench" %>
+								</td>
+								<td style="text-align: center;">
+									<%= link_to '削除する',admins_genre_path(genre), method: :delete, class:" btn btn-danger btn-shine glyphicon glyphicon-trash" %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row" style="text-align: center;">
+	</div>
