@@ -13,15 +13,16 @@
 
 
 				<tbody>
-					<% @teams.each do |user| %>
+					<% @teams.each do |team| %>
 					<tr>
-						<td><%= link_to user_path(user), class: "user_#{user.id}"  do %>
-                        <%= attachment_image_tag(user,:profile_image, fallback: "/assets/no-image.png", size:"60x60") %></td>
+						<td><%= link_to team_path(team), class: "team_#{team.id}"  do %>
+                        <%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"60x60") %></td>
 						<% end %>
-                        <td><%= user.name%></td>
-						<td><%= user.prefecture %></td>
-						<td><%= user.gender_status_i18n %></td>
-                        <td><%= user.age %>歳</td>
+                        <td><%= team.name%></td>
+						<td><%= team.prefecture %></td>
+						<td><%= team.frequency %></td>
+                        <td><%= team.day_of_week %></td>
+                        <td><%= team.genre.name%></td>
 					</tr>
 					<% end %>
 				</tbody>
