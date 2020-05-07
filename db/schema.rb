@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_094629) do
+ActiveRecord::Schema.define(version: 2020_05_06_235654) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_094629) do
     t.string "name", null: false
     t.string "team_image_id"
     t.integer "prefecture", null: false
-    t.integer "day_of_week", null: false
+    t.string "day_of_week", null: false
     t.integer "frequency", null: false
     t.text "introduction", null: false
     t.integer "publication_status", default: 0, null: false
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_094629) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uid"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

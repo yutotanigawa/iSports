@@ -1,0 +1,51 @@
+	<div class="container table-responsive border-none" style="margin-bottom: 100px;">
+		<h3>チーム登録画面</h3>
+		<div class="row">
+			<%= form_for @team,:url => {:controller => :teams,:action => :create} do |f| %>
+
+                        <%= f.attachment_field :team_image ,class:"form-control", :style=>"width:250px;" %>
+
+				        <%= f.label :チーム名%>
+				        <%= f.text_field :name, autofocus: true, autocomplete: "name",class:"form-control" %>
+
+
+				        <br><%= f.label :代表者名%>
+				        <%= @user.name %><br><br>
+
+				        <%= f.label :種目 %>
+				        <%= f.collection_select :genre_id, Genre.all, :id, :name,{include_blank:"-- 選択してください --"} ,class:"form-control"%>
+
+
+				        <%= f.label :活動拠点 %>
+                        <%= f.select :prefecture, Team.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+
+
+                    <%= f.label :活動頻度 %>
+                    <%= f.select :frequency, Team.frequencies.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+
+                    <div class="field">
+                        <br><%= f.label :活動曜日 %>
+                        <br><%= f.check_box :day_of_week, {multiple: true}, :日曜, nil %>日曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "月曜", nil %>月曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "火曜", nil %>火曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "水曜", nil %>水曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "木曜", nil %>木曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "金曜", nil %>金曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "土曜", nil %>土曜
+                        <%= f.check_box :day_of_week, {multiple: true}, "未定", nil %>未定
+                    </div>
+
+
+				        <br><%= f.label :チーム紹介%>
+				        <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction",class:"form-control" %>
+
+                    
+						<%= f.submit '新規登録', class:"col-sm-4 btn btn-shine btn-lg", :style=>"background-color:#ffb6c1; border:none;"%>
+
+					</div>
+
+
+
+		<% end %>
+	</div>
+</div>

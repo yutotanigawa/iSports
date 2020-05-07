@@ -11,7 +11,7 @@
                 <%= select_tag :gender_status, options_for_select(User.gender_statuses.keys.map {|k| [I18n.t("enums.user.gender_status.#{k}"), k]}), include_blank: true %>
             <br><%= label_tag :age, "年齢"%>
                 <%= select_tag :min_age, options_for_select((5..85.to_i)), include_blank: true %>〜
-                <%= select_tag :max_age, options_for_select((5..85.to_i, )), include_blank: true %>
+                <%= select_tag :max_age, options_for_select((5..85.to_i)), include_blank: true %>
             <%= submit_tag "検索", class:"btn btn-success btn-sm" %>
             <% end %>
 

@@ -93,3 +93,6 @@ gem 'refile-mini_magick'
 
 gem 'pry-rails'
 gem 'rb-readline'
+
+gem 'omniauth'
+gem 'omniauth-facebook'

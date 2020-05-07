@@ -16,10 +16,11 @@ Rails.application.routes.draw do
     resources :genres, only: [:index,:create,:edit,:update,:destroy]
   end
   # user側のルーティング
-  devise_for :users, controllers:{
+  devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   root 'homes#top'
   get 'homes/about' => 'homes#about'

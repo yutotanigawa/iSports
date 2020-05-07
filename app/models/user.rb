@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
 
          has_many :messages, dependent: :destroy
          has_many :entries, dependent: :destroy
@@ -10,6 +10,26 @@ class User < ApplicationRecord
          has_many :bookmarks, dependent: :destroy
          has_many :bookmark_teams, through: :bookmarks, source: :teams
          attachment :profile_image
+
+        #Facebookによるユーザー認証
+        def self.find_for_oauth(auth)
+          user = User.where(uid: auth.uid, provider: auth.provider).first
+          unless user
+           user = User.new(
+             uid: auth.uid,
+             provider: auth.provider,
+             email: auth.info.email,
+             password: Devise.friendly_token[0, 20]
+           )
+          if user.save
+            p "success"
+          else
+            p "failed"
+            p user.errors
+          end
+         end
+         user
+      end
 
          #Userモデルの各enum使用カラム
          enum valid_status: { active: 0, is_deleted: 1}

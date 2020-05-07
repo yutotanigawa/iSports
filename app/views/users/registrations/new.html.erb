@@ -24,7 +24,7 @@
         <%= f.date_select :birth_date, use_month_numbers: true,
         start_year: 1930, #入力値の開始位置（西暦）
         end_year: (Time.now.year - 5),
-        default: Date.new(1989, 1, 1) %>
+        include_blank: true %>
 
         <div class="field">
         <%= f.label :都道府県 %><br>
