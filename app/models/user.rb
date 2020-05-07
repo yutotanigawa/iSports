@@ -54,11 +54,11 @@ class User < ApplicationRecord
         end
 
 
-        #ユーザー名による絞り込み
+        #性別による絞り込み
         scope :get_by_gender_status, ->(gender_status) {
         where(gender_status: gender_status)
         }
-        #性別による絞り込み
+        #都道府県による絞り込み
         scope :get_by_prefecture, ->(prefecture) {
         where(prefecture: prefecture)
         }

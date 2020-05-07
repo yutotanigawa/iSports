@@ -1,9 +1,9 @@
 <div class="container">
+    <h3>会員一覧</h3>
 
     <div class="row">
-        <div class="col-md-6 offest-3">
-
-            <div class="search_form">
+        <div class="col-md-8 offset-2">
+                        <div class="search_form">
             <%= form_tag(users_path, method: "get") do %>
             <%= label_tag :prefecture, "都道府県" %>
                 <%= select_tag :prefecture, options_for_select(User.prefectures), include_blank: true %>
@@ -16,10 +16,6 @@
             <% end %>
 
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 offset-2">
                     <table class="table">
 				<thead>
 					<tr>

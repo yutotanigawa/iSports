@@ -21,14 +21,35 @@ class Team < ApplicationRecord
         福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,沖縄県:47
     }
 
-    # enum day_of_week: {
-    #     日曜:0,月曜:1,火曜:2,水曜:3,木曜:4,金曜:5,土曜:6, 未定:7
-    # }
+    #  enum day_of_week: {
+    #      日曜:0,月曜:1,火曜:2,水曜:3,木曜:4,金曜:5,土曜:6, 未定:7
+    #  }
 
+    #活動頻度のenum
     enum frequency: {
         月に1〜2回程度:0,週に1〜２回程度:1,週に3〜毎日:2,不定期:3
     }
+    #申請状況のenum
     enum publication_status: {
         applying:0, permission:1, is_deleted:2
     }
+
+    #都道府県による絞り込み
+    scope :get_by_prefecture, ->(prefecture) {
+        where(prefecture: prefecture)
+        }
+    #活動頻度による絞り込み
+    scope :get_by_frequency, ->(frequency) {
+        where(frequency: frequency)
+        }
+
+    #ジャンルによる絞り込み
+    scope :get_by_genre_id, ->(genre_id) {
+        where(genre_id: genre_id)
+        }
+
+    #ジャンルによる絞り込み
+    scope :get_by_day_of_week, ->(day_of_week) {
+        where("day_of_week like?", "%#{day_of_week}%")
+        }
 end
