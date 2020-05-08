@@ -1,0 +1,37 @@
+<div class="container">
+
+	<h3>気になるリスト</h3>
+	<div class="row">
+		<div class="col-md-10 offset-1">
+
+						<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th>チーム名</th>
+							<th>都道府県</th>
+							<th>活動頻度</th>
+							<th>活動曜日</th>
+                            <th>競技</th>
+						</tr>
+					</thead>
+
+
+					<tbody>
+						<% @teams.each do |team| %>
+						<tr>
+							<td><%= link_to team_path(team), class: "team_#{team.id}"  do %>
+							<%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"60x60") %></td>
+							<% end %>
+							<td><%= team.name%></td>
+							<td><%= team.prefecture %></td>
+							<td><%= team.frequency %></td>
+							<td><%= team.day_of_week %></td>
+							<td><%= team.genre.name%></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>

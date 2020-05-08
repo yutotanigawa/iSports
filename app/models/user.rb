@@ -8,8 +8,13 @@ class User < ApplicationRecord
          has_many :entries, dependent: :destroy
          has_many :teams, dependent: :destroy
          has_many :bookmarks, dependent: :destroy
-         has_many :bookmark_teams, through: :bookmarks, source: :teams
+         has_many :bookmark_teams, through: :bookmarks, source: :team
          attachment :profile_image
+
+        #ユーザーidがチームを保持しているユーザーのidと一致する場合
+        def own_teams?(teams)
+          self.id == teams.user_id
+        end
 
         #Facebookによるユーザー認証
         def self.find_for_oauth(auth)

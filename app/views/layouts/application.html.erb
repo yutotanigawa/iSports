@@ -12,9 +12,9 @@
 
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" href="#">
+  <%= link_to root_path do%>
   <img src="/assets/logo-3.png" width="90" height="30" alt="ロゴマーク">
-  </a>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -83,7 +83,7 @@
 <div class="footer-info-single">
 	<h2 class="title">インフォメーション</h2>
 	<ul class="list-unstyled">
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> お問い合わせ</a></li>
+		<li><%= link_to new_contacts_path do %><i class="fa fa-angle-double-right"></i> お問い合わせ<% end %></li>
 		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> よくあるご質問</a></li>
 		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 個人情報保護について</a></li>
 		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 免責事項</a></li>

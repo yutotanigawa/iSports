@@ -41,7 +41,8 @@ class TeamsController < ApplicationController
     def destroy
     end
 
-    def applications
+    def bookmarks
+        @teams = current_user.bookmark_teams
     end
 
     private

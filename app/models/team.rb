@@ -2,7 +2,7 @@ class Team < ApplicationRecord
     belongs_to :user
     belongs_to :genre
     has_many :bookmarks, dependent: :destroy
-    has_many :users, through: :favorites
+    has_many :users, through: :bookmarks
     attachment :team_image
 
 

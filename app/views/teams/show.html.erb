@@ -6,6 +6,13 @@
             <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"200x200") %>
             <br><h4><%= @team.name %></h4>
         </div>
+        <div class="row d-flex">
+            <% if @team.bookmark_by?(current_user) %>
+            <%= link_to "気になるリストからはずす", team_bookmarks_path(@team), method: :delete, id: :"js-bookmark-button-for-team-#{@team.id}" %>
+            <% else %>
+            <%= link_to "きになるリストに追加する", team_bookmarks_path(@team), method: :post, id: :"js-bookmark-button-for-team-#{@team.id}" %>
+            <% end %>
+        </div>
     </div>
 
     <div class="row">

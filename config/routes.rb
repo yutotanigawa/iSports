@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only:[:index,:show,:new,:create,:update,:destroy] do
-    resource :bookmarks, only: %i[:create,:destroy]
+    resource :bookmarks, only:[:create,:destroy]
     get :bookmarks, on: :collection
   end
 
@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   resources :rooms, only:[:create,:show]
 
 
-  resource :contacts, only:[:new, :create]
+  resource :contacts, only:[:new, :create] do
+    post 'confirm' => 'contacts#confirm'
+  end
 
 end
