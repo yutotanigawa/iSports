@@ -7,3 +7,9 @@ ja:
       gender_status:
         male: "男性"
         female: "女性"
+
+    team:
+      publication_status:
+        applying: "申請中"
+        permission: "掲載中"
+        is_deleted: "掲載終了"

@@ -11,12 +11,12 @@
 					), include_blank:"全国", class:"col-md-3 form-control" %>
 					<%= label_tag :frequency, "活動頻度" %>
 					<%= select_tag :frequency, options_for_select(Team.frequencies
-					# , :selected => params[:frequency]　選択を保持する記述
+					# , :selected => params[:frequency]選択を保持する記述
 					), include_blank:"-- 選択してください --",
 					class:"col-md-3 form-control" %>
 					<%= label_tag :genre, "競技" %>
 					<br><%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name
-					# , params[:genre_id]　選択を保持する記述
+					# , params[:genre_id]選択を保持する記述
 					),include_blank:"-- 選択してください --",class:"col-md-3 form-control"%>
 					<%= label_tag :day_of_week, "活動曜日" %>
 					<div class="field">
@@ -56,7 +56,7 @@
 							<td><%= team.prefecture %></td>
 							<td><%= team.frequency %></td>
 							<td><%= team.day_of_week %></td>
-							<td><%= team.genre.name%></td>
+							<td><%= team.genre.name %></td>
 						</tr>
 						<% end %>
 					</tbody>
