@@ -1,0 +1,72 @@
+<div class="container page-top">
+    <h3>会員情報詳細</h3>
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-4 offset-2">
+            <div class="profile-left">
+                <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"150x150") %>
+                <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">都道府県</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td><%= @user.prefecture%></td>
+                </tr>
+            </tbody>
+                <thead>
+                <tr>
+                <br><th>自己紹介</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td><%= @user.introduction %></td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="profile-right">
+                <h4>登録名:<%= @user.name %></h4>
+                <p><%= @user.birth_date %> (<%= @user.age %>)<%= @user.gender_status_i18n %></p>
+
+                <br><br><br><table class="table">
+                <thead>
+                <tr>
+                <th scope="col">所属チーム</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @teams.each do |team|%>
+                <tr>
+                <td><%= link_to team_path(team) do%>
+                <%= team.name %>
+                <% end %>
+                </td>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+        <%= form_for @user,:url =>{:controller => :users, :action => :update} do |f| %>
+            <div class="form-group row">
+                <div class="col-md-6 offset-3">
+                    <%= f.label :"会員ステータス " %>
+                    <div class="radio-inline">
+                    <%= f.radio_button :valid_status, :active %>
+                    <%= f.label :有効, class: "valid_status_label" %>
+                    <%= f.radio_button :valid_status, :is_deleted %>
+                    <%= f.label :退会済み, class: "valid_statuslabel" %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 offset-3">
+            <%= f.submit "会員情報を変更する", class:"btn btn-danger btn-sm"%>
+            </div>
+        <% end %>
+</div>

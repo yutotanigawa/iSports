@@ -1,30 +1,33 @@
-<%= form_for(@contact, url: { action: :confirm }) do |f| %>
-  <div>
-    <h2>メッセージフォーム</h2>
- 
-      <% if @contact.errors.present? %>
-        <div>
-          <strong>入力内容にエラーがあります</strong>
-          <ul>
-            <% @contact.errors.each do |attr, error| %>
-              <li><%= error %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+<div class="container page-top">
+    <h2>お問い合わせフォーム</h2>
+    <%= form_for(@contact, url: { action: :confirm }) do |f| %>
+      <div>
     
-    <div>
-      <strong>名前</strong>
-      <p><%= f.text_field :name, placeholder: '20文字以内' %></p>
-    </div>
-    <div>
-      <strong>メールアドレス</strong>
-      <p><%= f.text_field :email, placeholder: '30文字以内' %></p>
-    </div>
-    <div>
-      <strong>内容</strong>
-      <p><%= f.text_area :body, placeholder: '200文字以内' %></p>
-    </div>
-      <%= f.submit '確認画面へ' %>
-  </div>
-<% end %>
+          <% if @contact.errors.present? %>
+            <div>
+              <strong>入力内容にエラーがあります</strong>
+              <ul>
+                <% @contact.errors.each do |attr, error| %>
+                  <li><%= error %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        
+        <div>
+          <strong>名前</strong>
+          <p><%= f.text_field :name, placeholder: 'お名前',class:"form-control col-md-2" %></p>
+        </div>
+        <div>
+          <strong>メールアドレス</strong>
+          <p><%= f.text_field :email, placeholder: 'メールアドレス',class:"form-control col-md-3" %></p>
+        </div>
+        <div>
+          <strong>内容</strong>
+          <p><%= f.text_area :body, placeholder: '具体的にお問い合わせ内容を書いてください(200文字以内)',class:"form-control col-md-6", style:"height:150px;" %></p>
+        </div>
+          <%= f.submit '確認画面へ', class:"btn btn-success" %>
+      </div>
+    <% end %>
+
+</div>

@@ -1,10 +1,17 @@
 <div class="container">
     <h3>管理者サイト</h3>
     <div class="row">
-        <div class="col-md-8 offset-4">
-            <h4>本日の新しいチームの申請は
-                <%= link_to admins_applications_path do %>
-                    <%= @teams.count %>
+        <div class="col-md-6 offset-1">
+            <br><br><h4>本日の新しいチームの申請は
+                <%= link_to admins_teams_path do %>
+                    <%= @teams.count %>件
+                <% end %>
+            </h4>
+            <br>
+
+            <h4>本日の新規ご登録会員は
+                <%= link_to admins_users_path do %>
+                    <%= @users.count %>名
                 <% end %>
             </h4>
         </div>

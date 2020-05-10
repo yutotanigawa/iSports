@@ -1,8 +1,10 @@
+<div class="container page-top">
 <%= form_for @contact, :url => contacts_path do |f| %>
   <div>
     <h2>メッセージ確認</h2>
+    <p>以下の内容でメッセージを送信します</p>
     <div>
-      <strong>名前</strong>
+      <br><strong>名前</strong>
       <p>
         <%= f.hidden_field :name %>
         <%= @contact.name %>
@@ -22,7 +24,8 @@
         <%= simple_format(@contact.body) %>
       </p>
     </div>
-      <%= f.submit '戻る', name: 'back' %>
-      <%= f.submit '送信する' %>
+      <br><%= f.submit '戻る', name: 'back', class:"btn btn-primary"%>
+      <%= f.submit '送信する', class:"btn btn-success" %>
   </div>
 <% end %>
+</div>

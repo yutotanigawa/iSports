@@ -9,7 +9,7 @@
 
         <div class="field">
           <%= f.label :名前（ニックネームでも可） %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control col-md-6" %>
         </div>
 
         <%= f.label :"性別" %><br />
@@ -25,7 +25,7 @@
 
         <div class="field">
           <%= f.label :自己紹介%><br />
-          <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction" %>
+          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control", style:"height:100px;" %>
         </div>
 
 
