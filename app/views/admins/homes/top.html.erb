@@ -1,0 +1,12 @@
+<div class="container">
+    <h3>管理者サイト</h3>
+    <div class="row">
+        <div class="col-md-8 offset-4">
+            <h4>本日の新しいチームの申請は
+                <%= link_to admins_applications_path do %>
+                    <%= @teams.count %>
+                <% end %>
+            </h4>
+        </div>
+    </div>
+</div>

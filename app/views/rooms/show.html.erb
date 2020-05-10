@@ -1,0 +1,39 @@
+<div class="container page-top">
+    <h3 class="rooms-title">メッセージ</h3>
+    <div class="row">
+        <% @entries.each do |e| %>
+        <div class="user-name">
+        <strong>
+            <%= attachment_image_tag(e.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+            <a class="rooms-user-link" href="/users/<%= e.user.id %>">
+                <%= e.user.name %>さん
+            </a>
+        </strong>
+        </div>
+        <% end %>
+        <hr>
+        <div class="chats">
+        <div class="chat">
+            <% if @messages.present? %>
+            <% @messages.each do |m| %>
+                <div class="chat-box">
+                <div class="chat-face">
+                    <%= attachment_image_tag(m.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                </div>
+                <div class="chat-hukidashi"> <strong><%= m.content %></strong> <br>
+                    <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+                </div>
+                </div>
+            <% end %>
+            <% end %>
+        </div>
+        <div class="posts">
+            <%= form_for @message do |f| %>
+            <%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field form-control" %>
+                <%= f.hidden_field :room_id, value: @room.id %>
+                <br><%= f.submit "送信",class: 'btn btn-success'%>
+            <% end %>
+        </div>
+        </div>
+    </div>
+</div>

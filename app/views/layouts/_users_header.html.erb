@@ -1,41 +1,45 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">iSports</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <%= link_to root_path do%>
+  <img src="/assets/logo-3.png" width="90" height="30" alt="ロゴマーク">
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-        <a class="nav-link" href="#">トップページ<span class="sr-only">(current)</span></a>
+      <%if user_signed_in?%>
+        <li class="nav-item">
+        <%= link_to "マイページ", user_path(current_user) ,class:"nav-link" %>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">サイト概要</a>
+        <%= link_to "チーム一覧", teams_path ,class:"nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            サイトメニュー
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">チームを探す</a>
-            <a class="dropdown-item" href="#">ユーザーを探す</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">マイページ</a>
-        </div>
+        <li>
+        <%= link_to "会員一覧", users_path,class:"nav-link" %>
         </li>
-        <% if users_signed_out? %>
-            <li class="nav-item">
-            <%= link_to "ログアウト", destroy_users_session_path,method: :delete %>
-            </li>
-        <% else %>
-            <li class="nav-item">
-            <%= link_to "ログイン", new_users_session_path %>
-            </li>
-        <% end %>
+        <li class="nav-item">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+        <%= link_to "トップページ", root_path ,class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+        <%= link_to "サイト概要", homes_about_path ,class:"nav-link" %>
+        </li>
+        <li>
+        <%= link_to "新規登録", new_user_registration_path,class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path,class:"nav-link" %>
+        </li>
+      <% end %>
     </ul>
+
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="チーム名または会員名" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
     </form>
   </div>
 </nav>

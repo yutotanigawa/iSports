@@ -11,123 +11,21 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <%= link_to root_path do%>
-  <img src="/assets/logo-3.png" width="90" height="30" alt="ロゴマーク">
-  <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <%if user_signed_in?%>
-        <li class="nav-item">
-        <%= link_to "マイページ", user_path(current_user) ,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "チーム一覧", teams_path ,class:"nav-link" %>
-        </li>
-        <li>
-        <%= link_to "会員一覧", users_path,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"nav-link" %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-        <%= link_to "トップページ", root_path ,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "サイト概要", homes_about_path ,class:"nav-link" %>
-        </li>
-        <li>
-        <%= link_to "新規登録", new_user_registration_path,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path,class:"nav-link" %>
-        </li>
-      <% end %>
-    </ul>
+    <% if request.path.include?('admins') %>
+      <%= render 'layouts/admins_header'%>
+    <% else %>
+      <%= render 'layouts/users_header'%>
+    <% end %>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="チーム名または会員名" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-    </form>
-  </div>
-</nav>
     <%= yield %>
 
-        <footer class="nb-footer " style="margin-top:50px;">
-<div class="container">
-<div class="row">
-<div class="col-sm-12">
-<div class="about">
 
+    <% if request.path.include?('admins') %>
+      <%= render 'layouts/admins_footer'%>
+    <% else %>
+      <%= render 'layouts/users_footer'%>
+    <% end %>
 
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">iSports</h2>
-	<ul class="list-unstyled">
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> サイト概要</a></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> チーム一覧</a></li>
-    <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 会員一覧</a></li>
-	</ul>
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">インフォメーション</h2>
-	<ul class="list-unstyled">
-		<li><%= link_to new_contacts_path do %><i class="fa fa-angle-double-right"></i> お問い合わせ<% end %></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> よくあるご質問</a></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 個人情報保護について</a></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 免責事項</a></li>
-	</ul>
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">製作者概要</h2>
-	<ul class="list-unstyled">
-    <p>氏名：タニガワ ユウト</p>
-		<p>出身：徳島県</p>
-		<p>スキル：HTML,CSS,ruby,ruby on rails</p>
-		<p>連絡先：yunicipal@gmail.com</p>
-	</ul>
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">SNS</h2>
-	<div class="social-media">
-		<ul class="list-inline">
-			<li style="display:inline; font-size:30px;"><a href="https://github.com/yutotanigawa" title="Github"><i class="fa fa-github"></i></a></li>
-			<li style="display:inline; font-size:30px;"><a href="https://www.instagram.com/yutanpopi/" title="インスタグラム"><i class="fa fa-instagram"></i></a></li>
-		</ul>
-	</div>
-
-</div>
-</div>
-</div>
-</div>
-
-<section class="copyright">
-<div class="container">
-<div class="row">
-<div class="col-sm-6">
-<p>Copyright © 2020. iSports.</p>
-</div>
-<div class="col-sm-6"></div>
-</div>
-</div>
-</section>
-</footer>
   </body>
 </html>

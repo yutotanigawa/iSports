@@ -19,7 +19,7 @@
 
 @import "font-awesome";
 
-.container{
+.container.page-top{
     margin-top:50px;
 }
 
@@ -81,3 +81,7 @@ color: #999; }
 footer.nb-footer .copyright p {
 margin: 0;
 padding: 0; }
+
+.admins-info {
+    font-size: 10px;
+}
