@@ -68,6 +68,11 @@ class User < ApplicationRecord
         where(prefecture: prefecture)
         }
 
+        #会員ステータスによる絞り込み
+        scope :get_by_valid_status, ->(valid_status) {
+        where(valid_status: valid_status)
+        }
+
         #論理削除による退会機能
         def withdraw!
           if active?

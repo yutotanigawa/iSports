@@ -1,13 +1,17 @@
 class Admins::UsersController < ApplicationController
     def index
         @users = User.all
-                # パラメータとして都道府県を受け取っている場合は絞って検索する
-                if params[:prefecture].present?
+                    # パラメータとして都道府県を受け取っている場合は絞って検索する
+                    if params[:prefecture].present?
                     @users = @users.get_by_prefecture(params[:prefecture])
                     end
                     # パラメータとして性別を受け取っている場合は絞って検索する
                     if params[:gender_status].present?
                     @users = @users.get_by_gender_status(params[:gender_status])
+                    end
+                    # パラメータとして会員ステータスを受け取っている場合は絞って検索する
+                    if params[:valid_status].present?
+                        @users = @users.get_by_valid_status(params[:valid_status])
                     end
                     if params[:min_age].present? && [:max_age].present?
                         unless params[:min_age] == ""
