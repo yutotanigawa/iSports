@@ -32,7 +32,6 @@ class TeamsController < ApplicationController
         @user = current_user
         @team.user_id = current_user.id
         @team.save
-        redirect_to teams_path
     end
 
     def update
