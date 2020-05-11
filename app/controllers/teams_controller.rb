@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
     def index
-        @teams = Team.all
+        @teams = Team.where(publication_status: "permission")
         @genre = Genre.all
             # パラメータとして都道府県を受け取っている場合は絞って検索する
             if params[:prefecture].present?

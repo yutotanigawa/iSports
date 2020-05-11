@@ -1,6 +1,15 @@
 class Admins::TeamsController < ApplicationController
     def index
         @teams = Team.all
+        if params[:publication_status].present?
+            @teams = @teams.get_by_publication_status(params[:publication_status])
+        end
+        if params[:genre_id].present?
+            @teams = @teams.get_by_genre_id(params[:genre_id])
+        end
+        if params[:prefecture].present?
+            @teams = @teams.get_by_prefecture(params[:prefecture])
+        end
     end
 
     def show

@@ -31,6 +31,8 @@
             <%= form_for @message do |f| %>
             <%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field form-control" %>
                 <%= f.hidden_field :room_id, value: @room.id %>
+                <%# メッセージの受信者のidをUserChatRoomから自分以外で検索し代入。未読アテンション表示のための準備として %>
+                <%= f.hidden_field :receive_user_id, value: @receive_user.user_id %>
                 <br><%= f.submit "送信",class: 'btn btn-success'%>
             <% end %>
         </div>

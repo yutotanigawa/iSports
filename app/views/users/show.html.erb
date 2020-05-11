@@ -40,7 +40,9 @@
                 <% if @user.id == current_user.id %>
                 <%= link_to " 編集する", edit_user_path, class:"btn btn-primary btn-sm" %>
                 <br><br><%= link_to " 気になるリスト", bookmarks_teams_path, class:"btn btn-warning btn-sm" %>
-                <br><br><%= link_to "メッセージ一覧", rooms_path, class:"btn btn-success btn-sm "%>
+                <br><br><%= link_to rooms_path, class:"btn btn-success btn-sm" do %>
+                        <i class='fa fa-comments'></i>メッセージ一覧<%= new_message_badge %>
+                        <% end %>
                 <% end %>
 
                 <%# メッセージ機能の記述 %>

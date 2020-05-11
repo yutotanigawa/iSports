@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     def index
-        @users = User.all
+        @users = User.where(valid_status: "active")
         # パラメータとして都道府県を受け取っている場合は絞って検索する
         if params[:prefecture].present?
         @users = @users.get_by_prefecture(params[:prefecture])

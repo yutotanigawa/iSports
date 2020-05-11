@@ -48,8 +48,13 @@ class Team < ApplicationRecord
         where(genre_id: genre_id)
         }
 
-    #ジャンルによる絞り込み
+    #活動曜日による絞り込み
     scope :get_by_day_of_week, ->(day_of_week) {
         where("day_of_week like?", "%#{day_of_week}%")
+        }
+
+    #掲載状況による絞り込み
+    scope :get_by_publication_status, ->(publication_status) {
+        where(publication_status: publication_status)
         }
 end
