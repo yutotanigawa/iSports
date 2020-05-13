@@ -74,7 +74,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dotenv-rails'
 
-# 実装用gem
+# 実装gem
 gem 'devise'
 
 gem 'bootstrap', '~> 4.3.1'
@@ -96,3 +96,7 @@ gem 'rb-readline'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+#GoogleMapAPI使用のためのgem
+gem "gmaps4rails"
+gem "geocoder"

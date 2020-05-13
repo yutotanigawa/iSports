@@ -1,6 +1,5 @@
 
-    <div class="jumbotron" alt= "TOP画像" style="background:url(/assets/top.png); background-size: cover;
-    height: 100vh; margin-bottom:100px;">
+    <div class="jumbotron homes-top" alt= "TOP画像">
     </div>
 
 <div class="container page-top">
@@ -33,5 +32,19 @@
 
     <div class="row" style="margin-top:150px;">
     <h2>新着チーム</h2>
+                    <table class="table">
+    					<tbody>
+						<% @teams.each do |team| %>
+						<tr>
+							<td><%= link_to admins_team_path(team), class: "team_#{team.id}"  do %>
+							<%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"60x60") %></td>
+							<% end %>
+							<td><%= team.name%></td>
+							<td><%= team.prefecture %></td>
+							<td><%= team.genre.name%></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
     </div>
 </div>

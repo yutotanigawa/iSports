@@ -39,7 +39,9 @@
 				        <br><%= f.label :チーム紹介%>
 				        <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction",class:"form-control" %>
 
-                    
+						<%= f.label :チームの拠点（練習会場等）%>
+						<%= f.text_field :address, placeholder: "住所",class: ""%>
+
 						<br><%= f.submit '新規登録', class:"col-sm-4 btn btn-success btn-lg" %>
 
 					</div>

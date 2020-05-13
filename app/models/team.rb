@@ -5,6 +5,9 @@ class Team < ApplicationRecord
     has_many :users, through: :bookmarks
     attachment :team_image
 
+    #GoogleMapAPIにて住所を登録するカラム名
+    geocoded_by :address
+    after_validation :geocode, :if => :address_changed?
 
     def bookmark_by?(user)
         bookmarks.where(user_id: user.id).exists?

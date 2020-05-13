@@ -20,6 +20,11 @@ class TeamsController < ApplicationController
 
     def show
         @team = Team.find(params[:id])
+        @hash = Gmaps4rails.build_markers(@place) do |place, marker|
+            marker.lat place.latitude
+            marker.lng place.longitude
+            marker.infowindow place.name
+        end
     end
 
     def new
@@ -32,6 +37,7 @@ class TeamsController < ApplicationController
         @user = current_user
         @team.user_id = current_user.id
         @team.save
+        binding.pry
     end
 
     def update
@@ -46,6 +52,6 @@ class TeamsController < ApplicationController
 
     private
     def team_params
-        params.require(:team).permit(:genre_id, :user_id, :name, :introduction,:team_image, :prefecture, :frequency, :publication_status, day_of_week:[])
+        params.require(:team).permit(:genre_id, :user_id, :name, :introduction,:team_image, :prefecture, :frequency, :address, :latitude, :longitude, :publication_status, day_of_week:[])
     end
 end
