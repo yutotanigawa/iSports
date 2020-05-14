@@ -93,22 +93,35 @@
             </table>
 
             <%# #google mapを表示させる場所と大きさを指定 %>
+            
                 <% if @team.latitude.blank? %>
                 <% else %>
-                <div id="map" style="width: 600px; height: 500px;"></div>
-
+                <div id='map'></div>
+                <style>
+                #map {
+                height: 600px;
+                width: 600px;
+                }
+                </style>
                 <script>
-                handler = Gmaps.build("Google");
-                handler.buildMap({ provider: {}, internal: {id: "map"}}, function(){
-                    markers = handler.addMarkers(<%= raw @hash.to_json %>);
-                    handler.bounds.extendWith(markers);
-                    handler.fitMapToBounds();
-                    handler.getMap().setZoom(16);
+                let map
+                function initMap(){
+                geocoder = new google.maps.Geocoder()
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: <%= @team.latitude %>, lng:<%= @team.longitude %>},
+                    zoom: 12,
                 });
+                marker = new google.maps.Marker({
+                    position:  {lat: <%= @team.latitude %> , lng:<%= @team.longitude %>},
+                    map: map
+                });
+                }
                 </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUMLXS3MVY14ssQKw7aMxAZeae1JQ2CrQ&callback=initMap" async defer></script>
                 <% end %>
 
             </div>
         </div>
     </div>
 </div>
+
