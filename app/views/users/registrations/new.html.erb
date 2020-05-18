@@ -1,57 +1,63 @@
-<div class="container">
-      <h2>新規会員登録</h2>
+<div class="container page-top">
 
   <div class="row">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="col-md-8 offset-2">
+        <h2 style="margin:20px;">ユーザー新規登録</h2>
+          <p style="font-size:12px;">※入力項目は全て必須となっております。登録完了後、紹介文やプロフィール画像の設定が可能となります。</p>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
 
-        <div class="field">
-          <%= f.label :名前（ニックネームでも可） %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-        </div>
+            <div class="field-registration">
+              <%= f.label :名前（ニックネームでも可） %>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control col-md-5" %>
+            </div>
 
-        <%= f.label :"性別" %>
-        <div class="radio-inline">
-          <%= f.radio_button :gender_status, :male %>
-          <%= f.label :男性, class: "gender_status_label" %>
+            <div class="field-registration">
+            <%= f.label :性別 %>
+            <div class="radio-inline">
+              <%= f.radio_button :gender_status, :male %>
+              <%= f.label :男性, class: "gender_status_label" %>
 
-          <%= f.radio_button :gender_status, :female %>
-          <%= f.label :女性, class: "gender_statuslabel" %>
-        </div>
+              <%= f.radio_button :gender_status, :female %>
+              <%= f.label :女性, class: "gender_statuslabel" %>
+            </div>
+            </div>
 
-        <%= f.label :生年月日 %><br />
-        <%= f.date_select :birth_date, use_month_numbers: true,
-        start_year: 1930, #入力値の開始位置（西暦）
-        end_year: (Time.now.year - 5),
-        include_blank: true %>
+            <div class="field-registration">
+              <%= f.label :生年月日 %><br>
+              <%= f.date_select :birth_date, use_month_numbers: true,
+              start_year: 1930, #入力値の開始位置（西暦）
+              end_year: (Time.now.year - 5),
+              include_blank: true, class:"form-control" %>
+            </div>
 
-        <div class="field">
-        <%= f.label :都道府県 %><br>
-        <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
-        </div>
+            <div class="field-registration">
+              <%= f.label :都道府県 %><br>
+              <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info col-md-4' %>
+            </div>
 
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
+            <div class="field-registration">
+              <%= f.label :メールアドレス %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control col-md-6" %>
+            </div>
 
-        <div class="field">
-          <%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
+            <div class="field-registration">
+              <%= f.label :パスワード %>
+              <% if @minimum_password_length %>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password",class:"form-control col-md-6" %>
+            </div>
 
-        <div class="field">
-          <%= f.label :パスワード確認 %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
+            <div class="field-registration">
+              <%= f.label :"パスワード（確認再入力）" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control col-md-6" %>
+            </div>
 
-        <div class="actions">
-          <%= f.submit "登録" %>
-        </div>
-      <% end %>
-
-  </div>
+            <div class="actions text-center">
+              <%= f.submit "登録する", class:"btn btn-primary", style:"width:150px; margin-top:30px;" %>
+            </div>
+          <% end %>
+      </div>
+    </div>
 </div>

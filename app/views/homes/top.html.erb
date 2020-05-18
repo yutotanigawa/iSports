@@ -12,7 +12,7 @@
 <div class="container page-top">
     <div class="row">
         <div class="col-md-8 offset-md-2 text-center">
-            <h2 class="content-title">ブラインドスポーツとは</h3>
+            <h2 class="content-title">ブラインドスポーツとは</h2>
             <p class="content-body">ブラインドスポーツとは視覚障害を抱える方、または晴眼者がアイマスクをするなどして
             視界を遮断して行うスポーツである。パラリンピックにおいても、陸上競技をはじめ競泳、柔道、サッカー、馬術...etcと行った
             メジャーなスポーツからゴールボール、円周走など普段聞き慣れないような競技もある。ブラインドスポーツの際は音が重要なので、試合中は
@@ -22,12 +22,12 @@
 
     <div class="row text-center" style="margin-top:150px;">
         <div class="col-md-6 offset-md-3 text-center">
-            <h2 class="content-title">こんなアナタにiSports</h3>
+            <h2 class="content-title">こんなアナタにiSports</h2>
         </div>
     </div>
     <div class="row" style="margin-top:50px;">
         <div class="col-md-6 text-center">
-            <h4 class="content-subtitle">”チームを探している！”</h3>
+            <h4 class="content-subtitle">”チームを探している！”</h4>
                 <ul class="cp_list">
                     <li>視力が衰えてしまったけど、体を動かしたい！</li>
                     <li>何か新しい競技に挑戦してみたい！</li>
@@ -36,7 +36,7 @@
             <%= link_to "メンバー募集中チーム一覧", teams_path, class:"button-index btn-lg"%>
         </div>
         <div class="col-md-6 text-center">
-            <h4 class="content-subtitle">”メンバーを募集している！”</h3>
+            <h4 class="content-subtitle">”メンバーを募集している！”</h4>
                 <ul class="cp_list">
                     <li>チームを作ったけど、人が足りていない！</li>
                     <li>試合の相手チームを探している！</li>
@@ -46,27 +46,39 @@
         </div>
             <p class="ps">※詳しいご利用方法はサイト概要に記載しております。</p>
     </div>
-
-    <div class="row" style="margin-top:150px;">
-    </div>
-
-
-
-    <div class="row" style="margin-top:150px;">
-    <h2>新着チーム</h2>
-                    <table class="table">
-    					<tbody>
-						<% @teams.each do |team| %>
-						<tr>
-							<td><%= link_to admins_team_path(team), class: "team_#{team.id}"  do %>
-							<%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"60x60") %></td>
-							<% end %>
-							<td><%= team.name%></td>
-							<td><%= team.prefecture %></td>
-							<td><%= team.genre.name%></td>
-						</tr>
-						<% end %>
-					</tbody>
-				</table>
-    </div>
 </div>
+
+        <div class="col-md-4 offset-md-4 text-center" style="margin-top:100px;">
+            <h2 class="content-title">登録チーム紹介</h2>
+        </div>
+    </div>
+    <%# 新着チームスライド %>
+    <div id="skippr" style="margin-top:20px;">
+        <div id="theTarget">
+        <%# 新着チームをindex表示する %>
+            <% @teams.each_with_index do |team,i|%>
+                <div class="page<%= i+1 %>">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-5 slide-right text-center">
+                                <%= link_to team_path(team), style:"color:white;" do%>
+                                    <%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"150x150") %>
+                                        <h5 class="team-name"><%= team.name %>(<%= team.prefecture %>)</h5>
+                                <% end %>
+                            </div>
+                            <div class="col-md-7 slide-left">
+                                <h5>【競技】</h5>
+                                <h5><%= team.genre.name%></h5>
+                                <br><h5>【チーム紹介】</h5>
+                                <p class="tema-introduction">
+                                    <%= team.introduction %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    </div>

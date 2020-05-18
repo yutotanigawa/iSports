@@ -8,9 +8,9 @@
         </div>
         <div class="row d-flex">
             <% if @team.bookmark_by?(current_user) %>
-            <%= link_to "気になるリストからはずす", team_bookmarks_path(@team), method: :delete, remote:true, id: :"js-bookmark-button-for-team-#{@team.id}" %>
+            <%= link_to "気になるリストからはずす", team_bookmarks_path(@team), method: :delete, remote:true %>
             <% else %>
-            <%= link_to "きになるリストに追加する", team_bookmarks_path(@team), method: :post, remote:true, id: :"js-bookmark-button-for-team-#{@team.id}" %>
+            <%= link_to "きになるリストに追加する", team_bookmarks_path(@team), method: :post, remote:true %>
             <% end %>
         </div>
     </div>

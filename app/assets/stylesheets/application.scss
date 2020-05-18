@@ -22,6 +22,7 @@
 
 .container.page-top{
     margin-top:50px;
+    margin-bottom:50px;
 }
 
 footer.nb-footer {
@@ -85,4 +86,10 @@ padding: 0; }
 
 .admins-info {
     font-size: 10px;
+}
+
+.field-registration {
+    margin:8px;
+    border-top:1px solid #dcdcdc;
+    padding:5px;
 }

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!
+
     def index
         @users = User.where(valid_status: "active")
         # パラメータとして都道府県を受け取っている場合は絞って検索する
