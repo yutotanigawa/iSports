@@ -1,26 +1,40 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container page-top">
+  <div class="row all-content">
+    <div class="col-md-6 login-form login-form-left">
+      <div class="login-form-content">
+        <h1 style="color:white;">iSportsへようこそ</h1>
+        <br><p style="color:white;">iSportsで全ての機能をご利用いただくにはログインしていただく必要がございます。</p>
+        <br><p style="color:white;"> 初めてご利用の方は <%= link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-sm"%> を行ってください</p>
+      </div>
     </div>
-  <% end %>
+    <div class="col-md-6 login-form login-form-right">
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :メールアドレス %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control" %>
+          </div>
+
+          <div class="field">
+            <br><%= f.label :パスワード %><br />
+            <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :メールアドレスを保存する %>
+            </div>
+          <% end %>
+
+          <div class="actions">
+            <br><%= f.submit "ログイン", class:"btn btn-primary"%>
+          </div>
+        <% end %>
+
+      <div class="login-form-ps">
+        <br><br><p>パスワードを忘れてしまった方は<%= link_to "こちら", new_user_password_path%></p>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

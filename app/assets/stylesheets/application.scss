@@ -93,3 +93,37 @@ padding: 0; }
     border-top:1px solid #dcdcdc;
     padding:5px;
 }
+
+.login-form {
+    border:1px solid #dcdcdc;
+    padding:100px;
+    height:600px;
+}
+
+.login-form-left {
+    background-image:image-url('loginpage.png');
+    background-size: cover;
+	position: relative;
+}
+
+.login-form-left::before{
+	/* 透過した黒を重ねる */
+	background-color: rgba(0,0,0,0.6);
+	/* どの範囲に重ねるかを指定 */
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: ' ';
+}
+
+.login-form-content{
+  position: absolute;
+  margin-right:60px;
+  margin-top:70px;
+}
+
+.login-form-right{
+    padding-top:150px;
+}
