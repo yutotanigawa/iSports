@@ -1,38 +1,66 @@
 <div class="container page-top">
 
 	<h3>チーム一覧</h3>
-	<div class="row">
-		<div class="col-md-10 offset-1">
-				<div class="search_form">
+	<div class="row" style="margin-top:50px;">
+		<div class="col-md-9 mx-auto">
+			<div class="search-form card text-center">
+				<div class="card-header text-white bg-dark">チーム検索</div>
 				<%= form_tag(teams_path, method: "get") do %>
-				<%= label_tag :prefecture, "都道府県" %>
-					<%= select_tag :prefecture, options_for_select(Team.prefectures
-					# , :selected => params[:prefecture] 選択を保持する記述
-					), include_blank:"全国", class:"col-md-3 form-control" %>
-					<%= label_tag :frequency, "活動頻度" %>
-					<%= select_tag :frequency, options_for_select(Team.frequencies
-					# , :selected => params[:frequency]選択を保持する記述
-					), include_blank:"-- 選択してください --",
-					class:"col-md-3 form-control" %>
-					<%= label_tag :genre, "競技" %>
-					<br><%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name
-					# , params[:genre_id]選択を保持する記述
-					),include_blank:"-- 選択してください --",class:"col-md-3 form-control"%>
-					<%= label_tag :day_of_week, "活動曜日" %>
-					<div class="field">
-                        <br>
-						<%= check_box_tag :day_of_week, "日曜", nil  %>日曜
-                        <%= check_box_tag :day_of_week, "月曜", nil %>月曜
-                        <%= check_box_tag :day_of_week, "火曜", nil %>火曜
-                        <%= check_box_tag :day_of_week, "水曜", nil %>水曜
-                        <%= check_box_tag :day_of_week, "木曜", nil %>木曜
-                        <%= check_box_tag :day_of_week, "金曜", nil %>金曜
-                        <%= check_box_tag :day_of_week, "土曜", nil %>土曜
-                        <%= check_box_tag :day_of_week, "未定", nil %>未定
-                    </div>
-					<br><%= submit_tag "検索", class:"btn btn-success btn-sm" %>
-				<% end %>
+				<div class="search-content">
+					<%= label_tag :prefecture, "都道府県",style:"font-weight:bolder;" %>
+						<%= select_tag :prefecture, options_for_select(Team.prefectures
+						# , :selected => params[:prefecture] 選択を保持する記述
+						), include_blank:"全国", class:"col-md-5 form-control search-tag" %>
+						<br><%= label_tag :frequency, "活動頻度",style:"margin-left:0; font-weight:bolder;" %>
+						<%= select_tag :frequency, options_for_select(Team.frequencies
+						# , :selected => params[:frequency]選択を保持する記述
+						), include_blank:"-- 選択してください --",
+						class:"col-md-5 form-control search-tag" %>
+						<br><%= label_tag :genre, "競技 ",style:"margin-right:30px; font-weight:bolder;" %>
+						<%= select_tag :genre_id, options_from_collection_for_select(Genre.all, :id, :name
+						# , params[:genre_id]選択を保持する記述
+						),include_blank:"-- 選択してください --",class:"col-md-5 form-control search-tag"%>
+						<br><br><%= label_tag :day_of_week, "活動曜日",style:"margin-right:15px; font-weight:bolder;"%>
+						<div class="field search-tag">
+							<%= check_box_tag :day_of_week, "日曜", nil  %>日曜
+							<%= check_box_tag :day_of_week, "月曜", nil %>月曜
+							<%= check_box_tag :day_of_week, "火曜", nil %>火曜
+							<%= check_box_tag :day_of_week, "水曜", nil %>水曜
+							<%= check_box_tag :day_of_week, "木曜", nil %>木曜
+							<%= check_box_tag :day_of_week, "金曜", nil %>金曜
+							<%= check_box_tag :day_of_week, "土曜", nil %>土曜
+							<%= check_box_tag :day_of_week, "未定", nil %>未定
+						</div>
+						<br><br><%= submit_tag "検索", class:"btn btn-primary btn-md" %>
+					<% end %>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9 mx-auto">
+			<div class="team-index card">
+				<div class="card-header text-white bg-dark text-center">チーム一覧 / 検索結果</div>
+					<% @teams.each do |team| %>
+					<div class="team-content">
+						<div class="team-content-left">
+							<%= link_to team_path(team), class: "team_#{team.id}"  do %>
+							<%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"100x100",style:"border-radius:10px;") %><% end %>
+							<br><%= team.name %>
+							<br><%= team.prefecture %>
+						</div>
+						<div class="team-content-right">
+						</div>
+					</div>
+					<% end %>
+		</div>
+	</div>
+</div>
+
+<br><br><br><br><br><br><br>
 						<table class="table">
 					<thead>
 						<tr>
@@ -61,6 +89,3 @@
 						<% end %>
 					</tbody>
 				</table>
-		</div>
-	</div>
-</div>
