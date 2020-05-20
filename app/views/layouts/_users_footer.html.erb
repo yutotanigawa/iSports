@@ -1,73 +1,73 @@
 <footer class="nb-footer ">
 <div class="container">
-<div class="row">
-<div class="col-sm-12">
-<div class="about">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="about">
 
 
-</div>
+				</div>
+			</div>
+
+		<div class="col-md-3 col-sm-6">
+		<div class="footer-info-single">
+			<h2 class="title">iSports</h2>
+			<ul class="list-unstyled">
+				<li><%= link_to homes_about_path do%><i class="fa fa-angle-double-right"> サイト概要</i><% end %></li>
+				<li><%= link_to teams_path do%><i class="fa fa-angle-double-right"> チーム一覧</i><% end %></li>
+				<li><%= link_to users_path do%><i class="fa fa-angle-double-right"> 会員一覧</i><% end %></li>
+			</ul>
+		</div>
+		</div>
+
+		<div class="col-md-3 col-sm-6">
+		<div class="footer-info-single">
+			<h2 class="title">インフォメーション</h2>
+			<ul class="list-unstyled">
+				<li><%= link_to new_contacts_path do %><i class="fa fa-angle-double-right"></i> お問い合わせ<% end %></li>
+				<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> よくあるご質問</a></li>
+				<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 個人情報保護について</a></li>
+				<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 免責事項</a></li>
+			</ul>
+		</div>
+		</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="footer-info-single">
+					<h2 class="title">製作者概要</h2>
+					<ul class="list-unstyled">
+					<p>氏名：タニガワ ユウト</p>
+						<p>出身：徳島県</p>
+						<p>スキル：HTML,CSS,ruby,ruby on rails</p>
+						<p>連絡先：yunicipal@gmail.com</p>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<div class="footer-info-single">
+					<h2 class="title">SNS</h2>
+					<div class="social-media">
+						<ul class="list-inline">
+							<li style="display:inline; font-size:30px;"><a href="https://github.com/yutotanigawa" title="Github"><i class="fa fa-github"></i></a></li>
+							<li style="display:inline; font-size:30px;"><a href="#" title="インスタグラム"><i class="fa fa-facebook"></i></a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
 </div>
 
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">iSports</h2>
-	<ul class="list-unstyled">
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> サイト概要</a></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> チーム一覧</a></li>
-    <li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 会員一覧</a></li>
-	</ul>
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">インフォメーション</h2>
-	<ul class="list-unstyled">
-		<li><%= link_to new_contacts_path do %><i class="fa fa-angle-double-right"></i> お問い合わせ<% end %></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> よくあるご質問</a></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 個人情報保護について</a></li>
-		<li><a href="#" title=""><i class="fa fa-angle-double-right"></i> 免責事項</a></li>
-	</ul>
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">製作者概要</h2>
-	<ul class="list-unstyled">
-    <p>氏名：タニガワ ユウト</p>
-		<p>出身：徳島県</p>
-		<p>スキル：HTML,CSS,ruby,ruby on rails</p>
-		<p>連絡先：yunicipal@gmail.com</p>
-	</ul>
-</div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-<div class="footer-info-single">
-	<h2 class="title">SNS</h2>
-	<div class="social-media">
-		<ul class="list-inline">
-			<li style="display:inline; font-size:30px;"><a href="https://github.com/yutotanigawa" title="Github"><i class="fa fa-github"></i></a></li>
-			<li style="display:inline; font-size:30px;"><a href="https://www.instagram.com/yutanpopi/" title="インスタグラム"><i class="fa fa-instagram"></i></a></li>
-		</ul>
-	</div>
-
-</div>
-</div>
-</div>
-</div>
-
-<section class="copyright">
-<div class="container">
-<div class="row">
-<div class="col-sm-6">
-<p>Copyright © 2020. iSports.</p>
-</div>
-</div>
-	<div class="text-right">
-		<p class="admins-info">管理者の方は<%= link_to 'こちら', new_admin_session_path %></p>
-	</div>
-</div>
-</section>
+	<section class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+						<p>Copyright © 2020. iSports.</p>
+				</div>
+			</div>
+				<div class="text-right">
+					<p class="admins-info">管理者の方は<%= link_to 'こちら', new_admin_session_path %></p>
+				</div>
+		</div>
+	</section>
 </footer>

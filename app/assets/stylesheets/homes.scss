@@ -306,3 +306,157 @@ background-color:#0e7536;
 .team-name{
   margin-top:15px;
 }
+
+// AboutページのCSS
+.about-top{
+  background:image-url('about.png');
+  background-size: cover;
+  height: 400px;
+  margin-bottom:150px;
+}
+.about-top {
+background-size: cover;
+padding: 150px 0px; /*背景画像の高さを確保*/
+position: relative; /*中の要素の基準値*/
+}
+
+.about-top-content {
+  position: absolute;
+  height:400px;
+  margin:auto;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.6); /*半透明のフィルターをかける*/
+}
+
+.about-logo{
+  background-image:image-url('logo-3.png');
+  height:100px;
+  width:300px;
+  margin:40px;
+}
+
+.about-top-title{
+  color:white;
+  font-size:50px;
+  max-width:500px;
+  margin-top:50px;
+  margin-left:50px;
+  // border-top:3px solid white;
+  border-bottom:2px solid white;
+}
+
+.about-top-ps{
+  color:white;
+  margin-top:15px;
+  margin-bottom:13px;
+  margin-left:70px;
+}
+
+.box{
+  border: 2px solid rgb(59, 59, 59);
+}
+
+h5.box_header{
+  background: rgb(59, 59, 59);
+  color: #FFF;
+  margin-top: 50px;
+  margin-bottom:0;
+  display:inline-block;
+  padding: .3em .5em;
+  border-radius: 10px 10px 0 0;
+}
+.box .inner{
+  padding: 60px;
+}
+
+ul {
+    padding: 0;
+}
+li {
+    list-style-type: none;
+}
+dd {
+    margin-left: 0;
+}
+
+.flow {
+    padding-left: 120px;
+    position: relative;
+}
+.flow::before {
+    content: "";
+    width: 15px;
+    height: 100%;
+    background: #eee;
+    margin-left: -8px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 120px;
+}
+.flow > li {
+    position: relative;
+}
+.flow > li:not(:last-child) {
+    margin-bottom: 8vh;
+}
+.flow > li .icon {
+    font-size: 12px;
+    color: #fff;
+    background: rgb(209, 100, 37);
+    background: -moz-linear-gradient(left, rgb(209,100,37) 0%, rgb(253, 155, 89) 100%);
+    background: -webkit-linear-gradient(left, rgb(209,100,37) 0%,rgb(253, 155, 89) 100%);
+    background: linear-gradient(to right, rgb(209,100,37) 0%,rgb(253, 155, 89) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgb(209,100,37)', endColorstr='rgb(253, 155, 89)',GradientType=1 );
+    padding: 8px 20px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -120px;
+    z-index: 100;
+}
+.flow > li .icon::after {
+    content: "";
+    border-style: solid;
+    border-width: 5px 0 5px 10px;
+    border-color: transparent transparent transparent rgb(253, 155, 89);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.flow > li dl {
+    padding-left: 70px;
+    position: relative;
+}
+.flow > li dl::before,
+.flow > li dl::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 15px;
+}
+.flow > li dl::before {
+    width: 7px;
+    height: 7px;
+    margin-top: -3px;
+    background: rgb(209,100,37);
+    border-radius: 50%;
+    left: -4px;
+}
+.flow > li dl::after {
+    width: 50px;
+    border-bottom: 1px dashed #999;
+    position: absolute;
+    left: 5px;
+}
+.flow > li dl dt {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(209,100,37);
+    margin-bottom: 1vh;
+}
