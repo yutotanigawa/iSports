@@ -33,7 +33,6 @@ class TeamsController < ApplicationController
         @user = current_user
         @team.user_id = current_user.id
         @team.save
-        binding.pry
     end
 
     def update

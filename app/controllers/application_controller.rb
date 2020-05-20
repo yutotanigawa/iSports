@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
             when Admin
                 admins_root_path
             when User
-                root_path(resource)
+                user_path(resource)
             end
     end
 
