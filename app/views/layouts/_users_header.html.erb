@@ -7,35 +7,38 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
       <%if user_signed_in?%>
-        <li class="nav-item">
-        <%= link_to "マイページ", user_path(current_user) ,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "チーム一覧", teams_path ,class:"nav-link" %>
-        </li>
-        <li>
-        <%= link_to "会員一覧", users_path,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"nav-link" %>
-        </li>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          <%= link_to "マイページ", user_path(current_user) ,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "チーム一覧", teams_path ,class:"nav-link" %>
+          </li>
+          <li>
+          <%= link_to "会員一覧", users_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"nav-link" %>
+          </li>
+        </ul>
+        <span class="navbar-text" style="color:white; margin-right:30px;">ようこそ <%= current_user.name %>さん</span>
       <% else %>
-        <li class="nav-item">
-        <%= link_to "トップページ", root_path ,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "サイト概要", homes_about_path ,class:"nav-link" %>
-        </li>
-        <li>
-        <%= link_to "新規登録", new_user_registration_path,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path,class:"nav-link" %>
-        </li>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          <%= link_to "トップページ", root_path ,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "サイト概要", homes_about_path ,class:"nav-link" %>
+          </li>
+          <li>
+          <%= link_to "新規登録", new_user_registration_path,class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path,class:"nav-link" %>
+          </li>
+        </ul>
       <% end %>
-    </ul>
 
 
   </div>
