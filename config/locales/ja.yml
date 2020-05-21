@@ -13,3 +13,11 @@ ja:
         applying: "申請中"
         permission: "掲載中"
         is_deleted: "掲載終了"
+
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

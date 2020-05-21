@@ -31,7 +31,7 @@
 							<%= check_box_tag :day_of_week, "土曜", nil %>土曜
 							<%= check_box_tag :day_of_week, "未定", nil %>未定
 						</div>
-						<br><br><%= submit_tag "検索", class:"btn btn-primary btn-md" %>
+						<br><br><%= submit_tag "検索", class:"btn btn-success btn-md" %>
 					<% end %>
 				</div>
 			</div>
@@ -51,11 +51,21 @@
 							<div class="col-md-5 team-content-left  text-center">
 								<%= link_to team_path(team), class: "team_#{team.id}"  do %>
 									<%= attachment_image_tag(team,:team_image, fallback: "/assets/no-image.png", size:"130x130",style:"border-radius:10px;") %>
-									<br><span style="color:black; font-size:20px;"><%= team.name %><br>(<%= team.prefecture %>)</span>
+									<br><span style="color:black;"><%= team.name %>(<%= team.prefecture %>)</span>
 								<% end %>
+									<br><br><% if team.bookmark_by?(current_user) %>
+										<%= link_to team_bookmarks_path(team), method: :delete, remote:true,class:"btn btn-warning btn-sm active" do%>
+											<i class='fa fa-heart'> 解除する</i>
+										<% end %>
+									<% else %>
+										<%= link_to team_bookmarks_path(team), method: :post, remote:true,class:"btn btn-warning btn-sm" do %>
+											<i class='fa fa-heart-o'> 気になる</i>
+										<% end %>
+									<% end %>
+									<%= link_to "チーム詳細", team_path(team), class:"btn btn-primary btn-sm"%>
 							</div>
 							<div class="col-md-7 team-content-right ">
-								<span class="right-content-title">【競技】</span><span class="right-detail"><%= team.genre.name %> </span>
+								<br><span class="right-content-title">【競技】</span><span class="right-detail"><%= team.genre.name %> </span>
 								<br><span class="right-content-title">【活動頻度】</span><span class="right-detail"><%= team.frequency %> </span>
 								<br><span class="right-content-title">【活動曜日】</span><span class="right-detail"><%= team.day_of_week %> </span>
 							</div>
@@ -65,4 +75,11 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="paginate col-md-8 mx-auto">
+				<br><%= paginate @teams %>
+		</div>
+	</div>
+
 </div>
