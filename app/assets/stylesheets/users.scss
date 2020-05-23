@@ -1,3 +1,27 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-users{
+    text-align:center;
+    display:inline;
+    margin:7px;
+}
+
+@media screen and (max-width:770px) {
+    .team-content-left{
+        margin-bottom:10px;
+    }
+    .team-content-right{
+        text-align: center;
+        float:left;
+    }
+    .right-content-title{
+        display: block;
+        background: none;
+    }
+    .right-detail{
+        line-height: 1;
+        text-align:center;
+    }
+}

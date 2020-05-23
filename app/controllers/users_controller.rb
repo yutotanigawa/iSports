@@ -2,7 +2,9 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @users = User.where(valid_status: "active")
+        users = User.where(valid_status: "active").all
+        @users = users.page(params[:page]).per(5)
+
         # パラメータとして都道府県を受け取っている場合は絞って検索する
         if params[:prefecture].present?
         @users = @users.get_by_prefecture(params[:prefecture])
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
             unless params[:search_max_age] == ""
                 older_birth_ymd = calc_older_birthday(params[:max_age]).to_s
             else
-                # 最大の年齢として十分な150歳にした
+                # 最大の年齢として十分な150歳に設定
                 older_birth_ymd = calc_min_birthday("150").to_s
             end
                 # yyyymmdd形式の生年月日を日付形式に変換
@@ -40,19 +42,19 @@ class UsersController < ApplicationController
         @currentUserEntry=Entry.where(user_id: current_user.id)
         @userEntry=Entry.where(user_id: @user.id)
         unless @user.id == current_user.id
-          @currentUserEntry.each do |cu|
+        @currentUserEntry.each do |cu|
             @userEntry.each do |u|
-              if cu.room_id == u.room_id then
+                if cu.room_id == u.room_id then
                 @isRoom = true
                 @roomId = cu.room_id
-              end
+                end
             end
-          end
-          if @isRoom
-          else
-            @room = Room.new
-            @entry = Entry.new
-          end
+        end
+            if @isRoom
+            else
+                @room = Room.new
+                @entry = Entry.new
+            end
         end
     end
 

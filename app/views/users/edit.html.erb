@@ -1,41 +1,44 @@
 <div class="container page-top">
-      <h2>会員情報編集</h2>
+      <h3>会員情報編集</h3>
 
-  <div class="row">
-     <%= form_for @user,:url =>{:controller => :users, :action => :update} do |f| %>
-
-        <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"150x150") %>
-		<%= f.attachment_field :profile_image ,class:"form-control" %>
-
-        <div class="field">
-          <%= f.label :名前（ニックネームでも可） %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control col-md-6" %>
+  <div class="row" style="margin-top:40px;">
+    <div class="col-md-8 mx-auto">
+      <%= form_for @user,:url =>{:controller => :users, :action => :update} do |f| %>
+          <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"150x150") %>
+        <div class="field-registration">
+          <br><%= f.attachment_field :profile_image ,class:"form" %>
         </div>
-
-        <%= f.label :"性別" %><br />
+        <div class="field-registration">
+          <%= f.label :名前（ニックネームでも可） %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control col-md-4" %>
+        </div>
+        <div class="field-registration">
+            <%= f.label :"性別" %>
             <%= @user.gender_status_i18n %>
-
-        <br /><%= f.label :生年月日 %><br />
+        </div>
+        <div class="field-registration">
+            <%= f.label :生年月日 %>
             <%= @user.birth_date%>
-
-        <div class="field">
-        <%= f.label :都道府県 %><br>
-        <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+        </div>
+        <div class="field-registration">
+          <%= f.label :都道府県 %><br>
+          <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info col-md-5' %>
         </div>
 
-        <div class="field">
-          <%= f.label :自己紹介%><br />
-          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control", style:"height:100px;" %>
+        <div class="field-registration">
+            <%= f.label :自己紹介%><br />
+            <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class: "form-control", style:"height:100px;" %>
         </div>
 
 
-        <div class="actions">
-          <br /><%= f.submit "登録" ,class:"btn btn-success"%>
-        </div>
-      <% end %>
+          <div class="actions text-center">
+            <br/><%= f.submit "内容を更新" ,class:"btn btn-success btn-md", style:"width:120px;"%>
+          </div>
+        <% end %>
 
-            <span>
-            <%= link_to '退会する', user_cancel_path(current_user) ,class:"btn btn-danger" %>
-            </span>
+              <br><br><span style="float:right; margin-top:30px;">
+              <%= link_to 'iSportsを退会する', user_cancel_path(current_user) ,class:"btn btn-danger btn-sm" %>
+              </span>
+    </div>
   </div>
 </div>

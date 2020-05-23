@@ -5,80 +5,106 @@
     <h3>会員情報詳細</h3>
 <% end %>
 
-    <div class="row" style="margin-top:50px;">
-        <div class="col-md-4 offset-2">
-            <div class="profile-left">
+    <div class="row profile-top" style="margin-top:50px;">
+        <div class="col-md-4 profile-top-left">
                 <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"150x150") %>
-                <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">都道府県</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @user.prefecture%></td>
-                </tr>
-            </tbody>
-                <thead>
-                <tr>
-                <br><th>自己紹介</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @user.introduction %></td>
-                </tr>
-            </tbody>
-            </table>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="profile-right">
-                <h4>登録名:<%= @user.name %></h4>
+                <br><br><h4>登録名:<%= @user.name %></h4>
                 <p><%= @user.birth_date %> (<%= @user.age %>)<%= @user.gender_status_i18n %></p>
-                <% if @user.id == current_user.id %>
-                <%= link_to " 編集する", edit_user_path, class:"btn btn-primary btn-sm" %>
-                <br><br><%= link_to " 気になるリスト", bookmarks_teams_path, class:"btn btn-warning btn-sm" %>
+                <%# メッセージ機能の記述 %>
+                <div class="message-link" style="position:relative;">
+                    <% unless @user.id == current_user.id %>
+                            <% if @isRoom == true %>
+                                <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-md"><%= @user.name %>さんとのメッセージ</a></p>
+                            <% else %>
+                                <%= form_for @room do |f| %>
+                                <%= fields_for @entry do |e| %>
+                                <%= e.hidden_field :user_id, value: @user.id %>
+                            <% end %>
+                                <%= f.submit "メッセージを始める", class:"btn btn-primary btn-md user-show-chat"%>
+                                <% end %>
+                                <% end %>
+                    <% end %>
+                </div>
+        </div>
+        <div class="profile-top-right col-md-4">
+                                <% if @user.id == current_user.id %>
+                <%= link_to edit_user_path, class:"btn btn-primary btn-sm" do%>
+                    <i class='fa fa-cog'> 編集する</i>
+                <% end %>
+                <br><br><%= link_to bookmarks_teams_path, class:"btn btn-warning btn-sm" do%>
+                            <i class='fa fa-heart'> 気になるリスト</i>
+                        <% end %>
                 <br><br><%= link_to rooms_path, class:"btn btn-success btn-sm" do %>
-                        <i class='fa fa-comments'></i>メッセージ一覧<%= new_message_badge %>
+                        <i class='fa fa-comments'></i> メッセージ一覧<%= new_message_badge %>
                         <% end %>
                 <% end %>
 
-                <%# メッセージ機能の記述 %>
-                <% unless @user.id == current_user.id %>
-                        <% if @isRoom == true %>
-                            <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a>
-                        <% else %>
-                            <%= form_for @room do |f| %>
-                            <%= fields_for @entry do |e| %>
-                            <%= e.hidden_field :user_id, value: @user.id %>
-                        <% end %>
-                            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
-                            <% end %>
-                            <% end %>
-                <% end %>
-                <br><br><br><table class="table">
+        </div>
+    </div>
+
+    <div class="row profile-content">
+        <div class="col-md-5">
+            <table class="table">
                 <thead>
-                <tr>
-                <th scope="col">所属チーム</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @teams.each do |team|%>
-                <tr>
-                <td><%= link_to team_path(team) do%>
-                <%= team.name %>
-                <% end %>
-                </td>
-                </tr>
-                <% end %>
-            </tbody>
+                    <tr>
+                    <th scope="col">都道府県</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><%= @user.prefecture%></td>
+                    </tr>
+                </tbody>
+                    <thead>
+                    <tr>
+                    <br><th>自己紹介</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>
+                        <% if @user.introduction.blank? %>
+                            自己紹介はまだありません
+                        <% else %>
+                            <%= @user.introduction %>
+                        <% end %>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <br><table class="table">
+                    <thead>
+                    <tr>
+                    <th scope="col">所属チーム</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if @teams.blank? %>
+                        <tr>
+                        <td>所属しているチームはありません</td>
+                        </tr>
+                    <% else %>
+                        <% @teams.each do |team|%>
+                        <tr>
+                        <td><%= link_to team_path(team) do%>
+                        <%= team.name %>
+                        <% end %>
+                        </td>
+                        </tr>
+                        <% end %>
+                    <% end %>
+                </tbody>
             </table>
                 <% if @user.id == current_user.id %>
                 <%= link_to "チームを登録する", new_team_path, class:"btn btn-primary btn-sm glyphicon glyphicon-wrench" %>
                 <% end %>
-            </div>
         </div>
     </div>
 </div>
+
+
+
+
+

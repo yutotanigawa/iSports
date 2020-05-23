@@ -44,7 +44,8 @@ class TeamsController < ApplicationController
     end
 
     def bookmarks
-        @teams = current_user.bookmark_teams
+        teams = current_user.bookmark_teams
+        @teams = teams.page(params[:page]).per(5)
     end
 
     private

@@ -1,124 +1,143 @@
 <div class="container page-top" style="margin-top:50px;">
     <h3>チーム詳細</h3>
 
-    <div class="row">
-        <div class="col-md-4 offset-2">
+    <div class="row" style="margin-top:40px;">
+        <div class="col-md-6">
             <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"200x200") %>
-            <br><h4><%= @team.name %></h4>
-        </div>
-        <div class="row d-flex">
-            <% if @team.bookmark_by?(current_user) %>
-            <%= link_to "気になるリストからはずす", team_bookmarks_path(@team), method: :delete, remote:true %>
-            <% else %>
-            <%= link_to "きになるリストに追加する", team_bookmarks_path(@team), method: :post, remote:true %>
-            <% end %>
+            <br><br><h5 style="display:inline;"><%= @team.name %></h5>
+                <br><br><div class="btn-bookmarks" style="display:inline;">
+                    <% if @team.bookmark_by?(current_user) %>
+						<%= link_to team_bookmarks_path(@team), method: :delete, remote:true,class:"btn btn-warning btn-sm active" do%>
+						<i class='fa fa-heart'> 気になるリストから外す</i>
+						<% end %>
+					<% else %>
+						<%= link_to team_bookmarks_path(@team), method: :post, remote:true,class:"btn btn-warning btn-sm" do %>
+						<i class='fa fa-heart-o'> 気になるリストに追加する</i>
+                        <% end %>
+					<% end %>
+                </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-4 offset-2">
+        <div class="col-md-5">
             <div class="profile-left">
                 <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">都道府県(拠点)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @team.prefecture%></td>
-                </tr>
-            </tbody>
-                <thead>
-                <tr>
-                <br><th>競技</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @team.genre.name %></td>
-                </tr>
-            </tbody>
-                            <thead>
-                <tr>
-                <br><th>活動頻度</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @team.frequency %></td>
-                </tr>
-            </tbody>
-                            <thead>
-                <tr>
-                <br><th>活動曜日</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @team.day_of_week %></td>
-                </tr>
-            </tbody>
-            </table>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="profile-right">
+                    <thead>
+                        <tr>
+                        <th scope="col">都道府県(拠点)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><%= @team.prefecture%></td>
+                        </tr>
+                    </tbody>
+                        <thead>
+                        <tr>
+                        <br><th>競技</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><%= @team.genre.name %></td>
+                        </tr>
+                    </tbody>
+                                    <thead>
+                        <tr>
+                        <br><th>活動頻度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><%= @team.frequency %></td>
+                        </tr>
+                    </tbody>
+                                    <thead>
+                        <tr>
+                        <br><th>活動曜日</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><%= @team.day_of_week %></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-right">
 
-                <br><br><br><table class="table">
-                <thead>
-                <tr>
-                <th>代表者</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>
-                <%= link_to user_path(@team.user) do %>
-                <%= attachment_image_tag(@team.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
-                <%= @team.user.name %></td>
-                <% end %>
-                </tr>
-            </tbody>
-                <thead>
-                <tr>
-                <th>チーム紹介・備考欄</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td><%= @team.introduction %></td>
-                </tr>
-            </tbody>
-            </table>
+                        <br><br><br><table class="table">
+                        <thead>
+                        <tr>
+                        <th>代表者</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>
+                        <%= link_to user_path(@team.user) do %>
+                        <%= attachment_image_tag(@team.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                        <%= @team.user.name %> <%= link_to user_path(@team.user), class:"btn btn-primary btn-sm", style:"margin-left:50px;" do%>
+                            <i class='fa fa-angle-double-right'> 代表者はこちら</i>
+                        <% end %></td>
+                        <% end %>
+                        </tr>
+                    </tbody>
 
-            <%# #google mapを表示させる場所と大きさを指定 %>
+                    <thead>
+                        <tr>
+                        <th>チーム紹介・備考欄</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><%= @team.introduction %></td>
+                        </tr>
+                    </tbody>
+
                 <% if @team.latitude.blank? %>
                 <% else %>
-                <div id='map'></div>
-                <style>
-                #map {
-                height: 600px;
-                width: 600px;
-                }
-                </style>
-                <script>
-                let map
-                function initMap(){
-                geocoder = new google.maps.Geocoder()
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: <%= @team.latitude %>, lng:<%= @team.longitude %>},
-                    zoom: 12,
-                });
-                marker = new google.maps.Marker({
-                    position:  {lat: <%= @team.latitude %> , lng:<%= @team.longitude %>},
-                    map: map
-                });
-                }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUMLXS3MVY14ssQKw7aMxAZeae1JQ2CrQ&callback=initMap" async defer></script>
-                <% end %>
-
+                    <thead>
+                        <tr>
+                        <th>主な練習会場・事務所等</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td><%= @team.address %>
+                                <br><div class="team-map">
+                                    <%# #google mapを表示させる場所と大きさを指定 %>
+                                    <div id='map'></div>
+                                    <style>
+                                    #map {
+                                    height: 250px;
+                                    width: 350px;
+                                    }
+                                    </style>
+                                    <script>
+                                    let map
+                                    function initMap(){
+                                    geocoder = new google.maps.Geocoder()
+                                    map = new google.maps.Map(document.getElementById('map'), {
+                                        center: {lat: <%= @team.latitude %>, lng:<%= @team.longitude %>},
+                                        zoom: 12,
+                                    });
+                                    marker = new google.maps.Marker({
+                                        position:  {lat: <%= @team.latitude %> , lng:<%= @team.longitude %>},
+                                        map: map
+                                    });
+                                    }
+                                    </script>
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUMLXS3MVY14ssQKw7aMxAZeae1JQ2CrQ&callback=initMap" async defer></script>
+                                    <% end %>
+                                </div>
+                            </td>
+                            </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
