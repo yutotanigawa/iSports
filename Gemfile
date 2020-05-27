@@ -100,3 +100,5 @@ gem 'omniauth-facebook'
 #GoogleMapAPI使用のためのgem
 gem "gmaps4rails"
 gem "geocoder"
+
+gem "refile-s3"
