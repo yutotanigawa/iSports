@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         if params[:gender_status].present?
         @users = @users.get_by_gender_status(params[:gender_status])
         end
+
         if params[:min_age].present? && [:max_age].present?
             unless params[:min_age] == ""
                 # 指定された年齢となる生年月日をyyyymmdd形式の文字列へと変換
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
                 younger_birthday = Time.parse(younger_birth_ymd)
                 older_birthday = Time.parse(older_birth_ymd)
             # 条件に当てはまるUserを検索
-            @users = User.where(birth_date: older_birthday..younger_birthday)
+            @users = User.where(birth_date: older_birthday..younger_birthday).page(params[:page]).per(5)
         end
     end
 

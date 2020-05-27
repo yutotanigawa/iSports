@@ -9,10 +9,10 @@
                             <%= label_tag :prefecture, "都道府県 ",style:"font-weight:bolder; margin-right:10px;" %>
                                 <%= select_tag :prefecture, options_for_select(User.prefectures), include_blank: "全国", class:"form-control col-md-5", style:"display:inline; margin:7px;" %>
                                                                 <br><%= label_tag :gender_status, "性別",style:"font-weight:bolder; margin-right:10px;" %>
-                                <%= select_tag :gender_status, options_for_select(User.gender_statuses.keys.map {|k| [I18n.t("enums.user.gender_status.#{k}"), k]}), include_blank: true, class:"form-control col-md-3 search-users" %>
+                                <%= select_tag :gender_status, options_for_select(User.gender_statuses.keys.map {|k| [I18n.t("enums.user.gender_status.#{k}"), k]}), include_blank: "全て", class:"form-control col-md-3 search-users" %>
                             <br><%= label_tag :age, "年齢",style:"font-weight:bolder; margin-right:5px;"%>
-                                <%= select_tag :min_age, options_for_select((5..85.to_i)), include_blank: true, class:"form-control search-users",style:"width:65px;" %>から
-                                <%= select_tag :max_age, options_for_select((5..85.to_i)), include_blank: true, class:"form-control search-users",style:"width:65px;" %>歳まで
+                                <%= select_tag :min_age, options_for_select((5..85.to_i)), include_blank: "--", class:"form-control search-users",style:"width:65px;" %>から
+                                <%= select_tag :max_age, options_for_select((5..85.to_i)), include_blank: "--", class:"form-control search-users",style:"width:65px;" %>歳まで
                             <br><br><%= submit_tag "検索", class:"btn btn-success btn-md" %>
                             <% end %>
                         </div>
@@ -34,7 +34,7 @@
 							<div class="col-md-5 team-content-left  text-center">
 								<%= link_to user_path(user), class: "user_#{user.id}"  do %>
 									<%= attachment_image_tag(user,:profile_image, fallback: "/assets/no-image.png", size:"130x130",style:"border-radius:10px;") %>
-									<br><span style="color:black;"><%= user.name %></span>
+									<br><span style="color:black;"><%= user.name %>(<%= user.gender_status_i18n %>)</span>
 								<% end %>
 									<br><br>
 									<%= link_to "ユーザー詳細", user_path(user), class:"btn btn-primary btn-sm"%>

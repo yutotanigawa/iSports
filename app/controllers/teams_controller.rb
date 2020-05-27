@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
     before_action :authenticate_user!
-    # before_action :day_of_week_string, only: [:create]
+    #before_action :day_of_week_string, only: [:create]
 
     def index
         teams = Team.where(publication_status: "permission").all
@@ -32,6 +32,7 @@ class TeamsController < ApplicationController
 
     def create
         @team = Team.new(team_params)
+        @team.day_of_week = params[:team][:day_of_week].join("/")
         @user = current_user
         @team.user_id = current_user.id
         @team.save
@@ -53,7 +54,8 @@ class TeamsController < ApplicationController
         params.require(:team).permit(:genre_id, :user_id, :name, :introduction,:team_image, :prefecture, :frequency, :address, :latitude, :longitude, :publication_status, day_of_week:[])
     end
 
-    def day_of_week_string
-        params[:team][:day_of_week] = params[:team][:day_of_week].join("/") # to string
-    end
+    # def day_of_week_string
+    #     puts params[:team][:day_of_week]
+    #     params[:team][:day_of_week] = params[:team][:day_of_week].join("/") # to string
+    # end
 end
