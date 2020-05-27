@@ -1,41 +1,47 @@
 <div class="container page-top">
-    <h3 class="rooms-title">メッセージ</h3>
-    <div class="row">
-        <% @entries.each do |e| %>
-        <div class="user-name">
-        <strong>
-            <%= attachment_image_tag(e.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
-            <a class="rooms-user-link" href="/users/<%= e.user.id %>">
-                <%= e.user.name %>さん
-            </a>
-        </strong>
-        </div>
-        <% end %>
-        <hr>
-        <div class="chats">
-        <div class="chat">
+    <h3><%= opponent_user(@room) %>さんとのメッセージ   </h3>
+    <div class="row" style="margin-top:50px;">
+        <div class="col-md-9 mx-auto" style="border:solid 1px #dcdcdc; border-radius:20px; padding:20px;">
             <% if @messages.present? %>
-            <% @messages.each do |m| %>
-                <div class="chat-box">
-                <div class="chat-face">
-                    <%= attachment_image_tag(m.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                <% @messages.last(20).each do |m| %>
+        　<% if m.user == current_user %>
+        <div class="text-right">
+            <div class="rounded-pill p-3" style="background-color: #7fff00; display: inline-block;">
+                <%= m.content %>
+                    </div>
+                    <br><%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
+            </div>
+                <% else %>
+                <div class="">
+                    <%= link_to user_path(m.user) do %>
+                        <div class="chat-face">
+                            <%= attachment_image_tag(m.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                            </div>
+                        <div class="rounded-pill p-3" style="background-color: #f8f8ff; display: inline-block;">
+                    <% end %>
+                        <%= m.content %>
+                    </div>
+                    <br><%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
                 </div>
-                <div class="chat-hukidashi"> <strong><%= m.content %></strong> <br>
-                    <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+                <% end %>
+                <% end %>
+                <% else %>
+                <h3 class="text-center" style="margin:150px;">メッセージはまだありません</h3>
+                <% end %>
+
+                　　<%= form_for @message do |f| %>
+                <div class="col-md-10 mx-auto text-center">
+                    <%= f.text_area :content, :placeholder => "メッセージを入力して下さい", class:"form-control", style: "margin-top:50px; height:100px;", required: true %>
+                    <%= f.hidden_field :room_id, :value => @room.id %>
+                    <%# メッセージの受信者のidをUserChatRoomから自分以外で検索し代入。未読アテンション表示のための準備として %>
+                    <%= f.hidden_field :receive_user_id, value: @receive_user.user_id %>
+                    <%= f.submit "送信", class: "btn btn-success btn-md  role=button", style: "width:100px; margin-top:10px; float:right;" %>
                 </div>
-                </div>
-            <% end %>
-            <% end %>
-        </div>
-        <div class="posts">
-            <%= form_for @message do |f| %>
-            <%= f.text_field :content, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field form-control" %>
-                <%= f.hidden_field :room_id, value: @room.id %>
-                <%# メッセージの受信者のidをUserChatRoomから自分以外で検索し代入。未読アテンション表示のための準備として %>
-                <%= f.hidden_field :receive_user_id, value: @receive_user.user_id %>
-                <br><%= f.submit "送信",class: 'btn btn-success'%>
-            <% end %>
-        </div>
-        </div>
+                <% end %>
+    </div>
+</div>
+
+    <div class="col-md-10 mx-auto" style="margin-top:30px;">
+       <%= link_to "メッセージ一覧へ", rooms_path, class:"btn btn-primary btn-md " %>
     </div>
 </div>
