@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        users = User.where(valid_status: "active").all
+        users = User.where(valid_status: "active").all.reverse_order
         @users = users.page(params[:page]).per(5)
 
         # パラメータとして都道府県を受け取っている場合は絞って検索する

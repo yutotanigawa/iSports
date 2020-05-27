@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
     #before_action :day_of_week_string, only: [:create]
 
     def index
-        teams = Team.where(publication_status: "permission").all
+        teams = Team.where(publication_status: "permission").all.reverse_order
         @teams = teams.page(params[:page]).per(5)
         @genre = Genre.all
             # パラメータとして都道府県を受け取っている場合は絞って検索する
@@ -42,6 +42,10 @@ class TeamsController < ApplicationController
     end
 
     def destroy
+        @user = current_user
+        @team = Team.find(params[:id])
+        @team.destroy
+        redirect_to user_path(@user)
     end
 
     def bookmarks

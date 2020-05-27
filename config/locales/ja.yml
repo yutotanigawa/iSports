@@ -12,7 +12,7 @@ ja:
       publication_status:
         applying: "申請中"
         permission: "掲載中"
-        is_deleted: "掲載終了"
+        is_deleted: "掲載拒否"
 
   views:
     pagination:

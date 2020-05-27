@@ -92,12 +92,20 @@
                         <td><%= link_to team_path(team) do%>
                         <%= team.name %>
                         <% end %>
+                            <% if team.publication_status == "applying" %>
+                                <span class="badge badge-warning" style="float:right;"><%= team.publication_status_i18n %></span>
+                            <% elsif team.publication_status == "permission"%>
+                                <span class="badge badge-primary" style="float:right;"><%= team.publication_status_i18n %></span>
+                            <% else%>
+                                <span class="badge badge-danger" style="float:right;"><%= team.publication_status_i18n %></span>
+                            <% end %>
                         </td>
                         </tr>
                         <% end %>
                     <% end %>
                 </tbody>
             </table>
+            <p style="font-size:12px;">※掲載拒否されたチームは一定時間経過後に削除されます。</p>
                 <% if @user.id == current_user.id %>
                 <%= link_to "チームを登録する", new_team_path, class:"btn btn-primary btn-sm glyphicon glyphicon-wrench" %>
                 <% end %>

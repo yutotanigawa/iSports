@@ -7,7 +7,7 @@
 						<form class="form-inline">
 							<%= f.label :ジャンル名 %>
 							<%= f.text_field :name ,class:"form-control" ,:style=>"width:300px;" %>
-							<%= f.submit '追加', class:" btn btn-shine ", :style=>"background-color:#ffb6c1; border:none; width:120px; margin-left:66px; margin-top:20px;"%>
+							<br><%= f.submit '追加', class:" btn btn-primary"%>
 						</form>
 					<% end %>
 				<br>
@@ -26,10 +26,10 @@
 									<%= genre.name %>
 								</td>
 								<td style="text-align: center;">
-									<%= link_to '編集する',edit_admins_genre_path(genre), :url => {:controller => :gernes, :action => :edit}, class:" btn btn-primary btn-shine glyphicon glyphicon-wrench" %>
+									<%= link_to '編集する',edit_admins_genre_path(genre), :url => {:controller => :gernes, :action => :edit}, class:" btn btn-primary btn-sm" %>
 								</td>
 								<td style="text-align: center;">
-									<%= link_to '削除する',admins_genre_path(genre), method: :delete, class:" btn btn-danger btn-shine glyphicon glyphicon-trash" %>
+									<%= link_to '削除する',admins_genre_path(genre), method: :delete, class:" btn btn-danger btn-sm" %>
 								</td>
 							</tr>
 						<% end %>

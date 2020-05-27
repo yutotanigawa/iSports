@@ -63,10 +63,10 @@
                         <td><%= @team.day_of_week %></td>
                         </tr>
                     </tbody>
-                    </table>
-                    </div>
-                </div>
-                <div class="col-md-6">
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
                     <div class="profile-right">
 
                         <br><br><br><table class="table">
@@ -140,6 +140,15 @@
                 </table>
             </div>
         </div>
+    </div>
+    <div class="publication_status-btn text-right" style="margin-top:20px;">
+        <% if @team.user_id == current_user.id %>
+            <% if @team.publication_status == "applying" %>
+                <%= link_to "申請を取り消す", team_path(@team), method: :delete, class:"btn btn-danger" %>
+            <% elsif @team.publication_status == "permission" %>
+                <%= link_to "掲載を終了する", team_path(@team), method: :delete, class:"btn btn-danger" %>
+            <% end %>
+        <% end %>
     </div>
 </div>
 
