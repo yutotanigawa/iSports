@@ -1,22 +1,15 @@
 Rails.application.configure do
 
 
-  config.action_mailer.default_url_options = {  :host => 'http://isports.work' }
-  #送信方法を指定（この他に:sendmail/:file/:testなどがあります)
   config.action_mailer.delivery_method = :smtp
-
-  #送信方法として:smtpを指定した場合は、このconfigを使って送信詳細の設定を行います
   config.action_mailer.smtp_settings = {
-    #gmail利用時はaddress,domain,portは下記で固定
-    address:"smtp.gmail.com",
-    domain: 'gmail.com',
-    port:587,
-    #gmailのユーザアカウント（xxxx@gmail.com)※念のため、credentials.yml.enc行き
-    user_name: => ENV["GMAIL_USERNAME"],
-    #gmail２段階認証回避のためにアプリケーションでの利用パスワードを取得、必ずcredentials.yml.endに設定を！！
-    password: => ENV["GMAIL_PASSWORD"],
-    #パスワードをBase64でエンコード
-    authentication: :login
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "gmail.com",
+      :user_name => ENV["GMAIL_USERNAME"],
+      :password => ENV["GMAIL_PASSWORD"], #2段階認証パスワード
+      :authentication => :plain,
+      :enable_starttls_auto => true
   }
 
   # Settings specified here will take precedence over those in config/application.rb.
