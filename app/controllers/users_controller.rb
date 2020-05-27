@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @permission_teams = @user.teams.where(publication_status: "permission").all.reverse_order
         @teams = @user.teams.all
         #以下メッセージ機能の記述
         @currentUserEntry=Entry.where(user_id: current_user.id)
@@ -69,8 +70,6 @@ class UsersController < ApplicationController
         redirect_to user_path(@user.id)
     end
 
-    def search
-    end
 
     def cancel
         @user = current_user
