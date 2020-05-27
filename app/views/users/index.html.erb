@@ -6,10 +6,10 @@
                     <div class="card-header text-white bg-dark text-center">会員検索</div>
                         <div class="search-content text-center">
                             <%= form_tag(users_path, method: "get") do %>
-                            <%= label_tag :prefecture, "都道府県 ",style:"font-weight:bolder; margin-right:30px;" %>
-                                <%= select_tag :prefecture, options_for_select(User.prefectures), include_blank: "全国", class:"form-control col-md-5", style:"display:inline;" %>
+                            <%= label_tag :prefecture, "都道府県 ",style:"font-weight:bolder; margin-right:10px;" %>
+                                <%= select_tag :prefecture, options_for_select(User.prefectures), include_blank: "全国", class:"form-control col-md-5", style:"display:inline; margin:7px;" %>
                                                                 <br><%= label_tag :gender_status, "性別",style:"font-weight:bolder; margin-right:10px;" %>
-                                <%= select_tag :gender_status, options_for_select(User.gender_statuses.keys.map {|k| [I18n.t("enums.user.gender_status.#{k}"), k]}), include_blank: true, class:"form-control col-md-4 search-users" %>
+                                <%= select_tag :gender_status, options_for_select(User.gender_statuses.keys.map {|k| [I18n.t("enums.user.gender_status.#{k}"), k]}), include_blank: true, class:"form-control col-md-3 search-users" %>
                             <br><%= label_tag :age, "年齢",style:"font-weight:bolder; margin-right:5px;"%>
                                 <%= select_tag :min_age, options_for_select((5..85.to_i)), include_blank: true, class:"form-control search-users",style:"width:65px;" %>から
                                 <%= select_tag :max_age, options_for_select((5..85.to_i)), include_blank: true, class:"form-control search-users",style:"width:65px;" %>歳まで

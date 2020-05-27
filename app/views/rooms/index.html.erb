@@ -16,7 +16,8 @@
                 <%= link_to room_path(e.room.id) do %>
                     <%= e.user.name %><br>
                 <% end %>
-                        最新のメッセージ:<%= e.room.messages.order(created_at: :desc).take.try(:content) %><br><br>
+                        最新のメッセージ:<%= e.room.messages.order(created_at: :desc).take.try(:content) %><br>
+                        <%= link_to "メッセージを始める", room_path(e.room.id), class:"btn btn-primary btn-sm"%><br><br>
                 </div>
             </div>
             <% end %>

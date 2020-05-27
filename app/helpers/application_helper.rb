@@ -7,7 +7,12 @@ module ApplicationHelper
         else
         # 未読メッセージがある際にdiv要素を吐き出させてuser/showに表示
         # 未読メッセージが無い際に未読バッジを表示させないため
-        content_tag(:div,message_count, class: 'new-message-badge')
+        content_tag(:div,message_count, class: 'new-message-badge', style:"display:inline-block; width:25px;height: 25px;
+        border-radius: 50%;
+        background: red;
+        text-align:center;
+        line-height: 25px;
+        color:white;")
         end
     end
 end

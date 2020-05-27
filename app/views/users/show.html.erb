@@ -35,8 +35,9 @@
                             <i class='fa fa-heart'> 気になるリスト</i>
                         <% end %>
                 <br><br><%= link_to rooms_path, class:"btn btn-success btn-sm" do %>
-                        <i class='fa fa-comments'></i> メッセージ一覧<%= new_message_badge %>
+                        <i class='fa fa-comments'></i> メッセージ一覧
                         <% end %>
+                        <%= new_message_badge %>
                 <% end %>
 
         </div>
