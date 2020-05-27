@@ -2,16 +2,16 @@
     <h3><%= opponent_user(@room) %>さんとのメッセージ   </h3>
     <div class="row" style="margin-top:50px;">
         <div class="col-md-9 mx-auto" style="border:solid 1px #dcdcdc; border-radius:20px; padding:20px;">
-            <% if @messages.present? %>
+        <% if @messages.present? %>
                 <% @messages.last(20).each do |m| %>
-        　<% if m.user == current_user %>
+            <% if m.user == current_user %>
         <div class="text-right">
             <div class="rounded-pill p-3" style="background-color: #7fff00; display: inline-block;">
                 <%= m.content %>
                     </div>
                     <br><%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
             </div>
-                <% else %>
+            <% else %>
                 <div class="">
                     <%= link_to user_path(m.user) do %>
                         <div class="chat-face">
@@ -23,9 +23,9 @@
                     </div>
                     <br><%= m.created_at.strftime("%Y/%m/%d %H:%M")%>
                 </div>
-                <% end %>
-                <% end %>
-                <% else %>
+            <% end %>
+            <% end %>
+        <% else %>
                 <h3 class="text-center" style="margin-top:150px;">メッセージはまだありません</h3>
                 <p class="text-center" style="color:gray; margin-bottom:150px;">初めてのメッセージはマナーとモラルを意識しましょう！</p>
                 <% end %>
