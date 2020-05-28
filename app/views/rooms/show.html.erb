@@ -15,7 +15,7 @@
                 <div class="">
                     <%= link_to user_path(m.user) do %>
                         <div class="chat-face">
-                            <%= attachment_image_tag(m.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                            <%= attachment_image_tag(m.user,:profile_image, fallback: asset_path("no-image.png"), size:"50x50", style:"border-radius:30px;") %>
                             </div>
                         <div class="rounded-pill p-3" style="background-color: #f8f8ff; display: inline-block;">
                     <% end %>

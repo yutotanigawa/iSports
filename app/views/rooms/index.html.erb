@@ -9,7 +9,7 @@
                     <div class="user-left">
                     <%= link_to room_path(e.room.id) do %>
                         <%# <img src="<%= "/user_images/#{e.user.image_name}" %>
-                        <%= attachment_image_tag(e.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                        <%= attachment_image_tag(e.user,:profile_image, fallback: asset_path("no-image.png"), size:"50x50", style:"border-radius:30px;") %>
                     <% end %>
                     </div>
                     <!-- 右側に最新メッセージを送ったユーザーの名前及び、そのメッセージ -->
