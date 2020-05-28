@@ -3,7 +3,7 @@
 
     <div class="row" style="margin-top:40px;">
         <div class="col-md-6">
-            <%= attachment_image_tag(@user,:profile_image, fallback: asset_path("no-image.png"), size:"200x200") %>
+            <%= attachment_image_tag(@team,:team_image, fallback: asset_path("no-image.png"), size:"200x200") %>
             <br><br><h5 style="display:inline;"><%= @team.name %></h5>
                 <br><br><div class="btn-bookmarks" style="display:inline;">
                     <% if @team.bookmark_by?(current_user) %>
@@ -79,7 +79,7 @@
                         <tr>
                         <td>
                         <%= link_to user_path(@team.user) do %>
-                        <%= attachment_image_tag(@team.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                        <%= attachment_image_tag(@team.user,:profile_image, fallback: asset_path("no-image.png"), size:"50x50", style:"border-radius:30px;") %>
                         <%= @team.user.name %> <%= link_to user_path(@team.user), class:"btn btn-primary btn-sm", style:"margin-left:50px;" do%>
                             <i class='fa fa-angle-double-right'> 代表者はこちら</i>
                         <% end %></td>
