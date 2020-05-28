@@ -1,13 +1,14 @@
 Rails.application.configure do
 
-
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: "http://isports.work"}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
       :port => 587,
       :domain => "gmail.com",
-      :user_name => ENV["GMAIL_USERNAME"],
-      :password => ENV["GMAIL_PASSWORD"], #2段階認証パスワード
+      :user_name => "youarebusy1@gmail.com",
+      :password => "tearai444",
       :authentication => :plain,
       :enable_starttls_auto => true
   }
@@ -39,7 +40,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
