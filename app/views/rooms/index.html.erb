@@ -2,24 +2,30 @@
         <h3 class="users-heading">メッセージ一覧</h3>
     <div class="row" style="margin-top:50px;">
         <div class="col-md-8 mx-auto" style="border:solid 1px #dcdcdc; padding:30px; border-radius:20px;">
-            <% @anotherEntries.each do |e| %>
-            <div class="users-index-item">
-                <!-- 左側に最新メッセージを送ったユーザーのプロフィール画像 -->
-                <div class="user-left">
-                <%= link_to room_path(e.room.id) do %>
-                    <%# <img src="<%= "/user_images/#{e.user.image_name}" %>
-                    <%= attachment_image_tag(e.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
-                <% end %>
+            <% if @anotherEntries.exists? %>
+                <% @anotherEntries.each do |e| %>
+                <div class="users-index-item">
+                    <!-- 左側に最新メッセージを送ったユーザーのプロフィール画像 -->
+                    <div class="user-left">
+                    <%= link_to room_path(e.room.id) do %>
+                        <%# <img src="<%= "/user_images/#{e.user.image_name}" %>
+                        <%= attachment_image_tag(e.user,:profile_image, fallback: "/assets/no-image.png", size:"50x50", style:"border-radius:30px;") %>
+                    <% end %>
+                    </div>
+                    <!-- 右側に最新メッセージを送ったユーザーの名前及び、そのメッセージ -->
+                    <div class="user-right">
+                    <%= link_to room_path(e.room.id) do %>
+                        <%= e.user.name %><br>
+                    <% end %>
+                            最新のメッセージ:<%= e.room.messages.order(created_at: :desc).take.try(:content) %><br>
+                            <%= link_to "メッセージを始める", room_path(e.room.id), class:"btn btn-primary btn-sm"%><br><br>
+                    </div>
                 </div>
-                <!-- 右側に最新メッセージを送ったユーザーの名前及び、そのメッセージ -->
-                <div class="user-right">
-                <%= link_to room_path(e.room.id) do %>
-                    <%= e.user.name %><br>
                 <% end %>
-                        最新のメッセージ:<%= e.room.messages.order(created_at: :desc).take.try(:content) %><br>
-                        <%= link_to "メッセージを始める", room_path(e.room.id), class:"btn btn-primary btn-sm"%><br><br>
+            <% else %>
+                <div class="users-index-item" style="margin:100px;">
+                    <h4>メッセージはまだありません</h4>
                 </div>
-            </div>
             <% end %>
         </div>
     </div>
