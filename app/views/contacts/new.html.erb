@@ -2,29 +2,20 @@
     <h2>お問い合わせフォーム</h2>
     <%= form_for(@contact, url: { action: :confirm }) do |f| %>
       <div>
-    
-          <% if @contact.errors.present? %>
-            <div>
-              <strong>入力内容にエラーがあります</strong>
-              <ul>
-                <% @contact.errors.each do |attr, error| %>
-                  <li><%= error %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-        
+
+      <%= render "layouts/error_messages", model: @contact %>
+
         <div>
           <strong>名前</strong>
-          <p><%= f.text_field :name, placeholder: 'お名前',class:"form-control col-md-2" %></p>
+          <p><%= f.text_field :name, placeholder: 'お名前',class:"form-control col-md-2", required: true %></p>
         </div>
         <div>
           <strong>メールアドレス</strong>
-          <p><%= f.text_field :email, placeholder: 'メールアドレス',class:"form-control col-md-3" %></p>
+          <p><%= f.text_field :email, placeholder: 'メールアドレス',class:"form-control col-md-3", required: true %></p>
         </div>
         <div>
           <strong>内容</strong>
-          <p><%= f.text_area :body, placeholder: '具体的にお問い合わせ内容を書いてください(200文字以内)',class:"form-control col-md-6", style:"height:150px;" %></p>
+          <p><%= f.text_area :body, placeholder: '具体的にお問い合わせ内容を書いてください(200文字以内)',class:"form-control col-md-6", style:"height:150px;", required: true %></p>
         </div>
           <%= f.submit '確認画面へ', class:"btn btn-success" %>
       </div>
