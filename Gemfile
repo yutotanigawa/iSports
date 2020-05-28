@@ -101,4 +101,5 @@ gem 'omniauth-facebook'
 gem "gmaps4rails"
 gem "geocoder"
 
-gem "refile-s3"
+gem 'devise-i18n'
+gem 'devise-i18n-views'

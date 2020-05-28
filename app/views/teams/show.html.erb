@@ -6,16 +6,10 @@
             <%= attachment_image_tag(@team,:team_image, fallback: asset_path("no-image.png"), size:"200x200") %>
             <br><br><h5 style="display:inline;"><%= @team.name %></h5>
                 <br><br><div class="btn-bookmarks" style="display:inline;">
-                    <% if @team.bookmark_by?(current_user) %>
-						<%= link_to team_bookmarks_path(@team), method: :delete, remote:true,class:"btn btn-warning btn-sm active" do%>
-						<i class='fa fa-heart'> 気になるリストから外す</i>
-						<% end %>
-					<% else %>
-						<%= link_to team_bookmarks_path(@team), method: :post, remote:true,class:"btn btn-warning btn-sm" do %>
-						<i class='fa fa-heart-o'> 気になるリストに追加する</i>
-                        <% end %>
-					<% end %>
-                </div>
+                    <span id="bookmark_button2_<%= @team.id %>">
+                        <%= render "bookmark_button2" %>
+                    </span>
+                    </div>
         </div>
     </div>
 

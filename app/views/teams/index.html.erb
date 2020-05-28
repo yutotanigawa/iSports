@@ -53,15 +53,10 @@
 									<%= attachment_image_tag(team,:team_image, fallback: asset_path("no-image.png"), size:"130x130",style:"border-radius:10px;") %>
 									<br><span style="color:black;"><%= team.name %>(<%= team.prefecture %>)</span>
 								<% end %>
-									<br><br><% if team.bookmark_by?(current_user) %>
-												<%= link_to team_bookmarks_path(team), method: :delete, remote:true,class:"btn btn-warning btn-sm active" do%>
-												<i class='fa fa-heart'> 解除する</i>
-												<% end %>
-											<% else %>
-										<%= link_to team_bookmarks_path(team), method: :post, remote:true,class:"btn btn-warning btn-sm" do %>
-											<i class='fa fa-heart-o'> 気になる</i>
-											<% end %>
-									<% end %>
+									<br><br>
+									<span id="bookmark_button_<%= team.id %>">
+										<%= render "bookmark_button", team: team %>
+									</span>
 									<%= link_to "チーム詳細", team_path(team), class:"btn btn-primary btn-sm"%>
 							</div>
 							<div class="col-md-7 team-content-right ">

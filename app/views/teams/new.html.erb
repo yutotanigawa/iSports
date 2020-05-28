@@ -4,14 +4,16 @@
 		<div class="col-md-8 mx-auto" style="margin-top:50px;">
 			<p>メンバーを募集したいチームの登録をこちらから申請することができます。
 			<br>下記の情報を入力してください。</p>
+
 				<%= form_for @team,:url => {:controller => :teams,:action => :create} do |f| %>
+					<%= render "layouts/error_messages", model: @team %>
 						<div class="field-registration">
 							<br><%= f.label :チーム画像%>
 							<br><%= f.attachment_field :team_image, :style=>"width:250px;" %>
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :チーム名%> <span class="badge badge-danger">必須</span>
-							<%= f.text_field :name, autofocus: true, autocomplete: "name",class:"form-control col-md-7" %>
+							<%= f.text_field :name, autofocus: true, autocomplete: "name",class:"form-control col-md-7", required: true %>
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :代表者名%>
@@ -19,15 +21,15 @@
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :種目 %> <span class="badge badge-danger">必須</span>
-							<%= f.collection_select :genre_id, Genre.all, :id, :name,{include_blank:"選択してください"} ,class:"form-control col-md-6"%>
+							<%= f.collection_select :genre_id, Genre.all, :id, :name,{include_blank:"選択してください"} ,class:"form-control col-md-6", required: true%>
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :活動拠点 %> <span class="badge badge-danger">必須</span>
-							<br><%= f.select :prefecture, Team.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info col-md-5' %>
+							<br><%= f.select :prefecture, Team.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info col-md-5', required: true %>
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :活動頻度 %> <span class="badge badge-danger">必須</span>
-							<br><%= f.select :frequency, Team.frequencies.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info col-md-5' %>
+							<br><%= f.select :frequency, Team.frequencies.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info col-md-5', required: true %>
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :活動曜日 %> <span class="badge badge-danger">必須</span>
@@ -46,7 +48,7 @@
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :チーム紹介・備考欄%> <span class="badge badge-danger">必須</span>
-							<%= f.text_area :introduction, placeholder: "200文字以内", autofocus: true, autocomplete: "introduction",class:"form-control",style:"height:200px;" %>
+							<%= f.text_area :introduction, placeholder: "200文字以内", autofocus: true, autocomplete: "introduction",class:"form-control",style:"height:200px;", required: true %>
 						</div>
 							<div class="text-center">
 								<br><%= f.submit '申請する', class:"col-sm-4 btn btn-primary btn-lg" %>

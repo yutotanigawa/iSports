@@ -5,6 +5,10 @@ class Team < ApplicationRecord
     has_many :users, through: :bookmarks
     attachment :team_image
 
+    validates :name, length: {in: 2..15}
+    validates :day_of_week, presence: true
+    validates :introduction, presence: true, length: {in: 10..200}
+
     #GoogleMapAPIにて住所を登録するカラム名
     geocoded_by :address
     after_validation :geocode, :if => :address_changed?

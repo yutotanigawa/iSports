@@ -4,7 +4,7 @@
   <div class="row" style="margin-top:40px;">
     <div class="col-md-8 mx-auto">
       <%= form_for @user,:url =>{:controller => :users, :action => :update} do |f| %>
-          <%= attachment_image_tag(@user,:profile_image, fallback: "/assets/no-image.png", size:"150x150") %>
+          <%= attachment_image_tag(@user,:profile_image, fallback: asset_path("no-image.png"), size:"150x150") %>
         <div class="field-registration">
           <br><%= f.attachment_field :profile_image ,class:"form" %>
         </div>

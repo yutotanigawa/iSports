@@ -1,4 +1,23 @@
 ja:
+  activerecord:
+    models:
+      user:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        birth_date: 生年月日
+        gender_status: 性別
+
+    models:
+      team:
+    attributes:
+      team:
+        name: チーム名
+        genre: 競技
+        introduction: チーム紹介
+
   enums:
     user:
       valid_status:

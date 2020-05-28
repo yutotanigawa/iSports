@@ -35,7 +35,10 @@ class TeamsController < ApplicationController
         @team.day_of_week = params[:team][:day_of_week].join("/")
         @user = current_user
         @team.user_id = current_user.id
-        @team.save
+        if @team.save
+        else
+            render 'new'
+        end
     end
 
     def update

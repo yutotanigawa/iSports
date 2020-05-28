@@ -1,0 +1,9 @@
+<% if team.bookmark_by?(current_user) %>
+	<%= link_to team_bookmarks_path(team), method: :delete, remote:true,class:"btn btn-warning btn-sm active" do%>
+	<i class='fa fa-heart'> 解除する</i>
+	<% end %>
+<% else %>
+	<%= link_to team_bookmarks_path(team), method: :post, remote:true,class:"btn btn-warning btn-sm" do %>
+	<i class='fa fa-heart-o'> 気になる</i>
+	<% end %>
+<% end %>
