@@ -33,7 +33,8 @@
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :活動曜日 %> <span class="badge badge-danger">必須</span>
-							<br><%= f.check_box :day_of_week, {multiple: true}, "日曜", nil %>日曜
+							<br>
+							<%= f.check_box :day_of_week, {multiple: true}, "日曜", nil %>日曜
 							<%= f.check_box :day_of_week, {multiple: true}, "月曜", nil %>月曜
 							<%= f.check_box :day_of_week, {multiple: true}, "火曜", nil %>火曜
 							<%= f.check_box :day_of_week, {multiple: true}, "水曜", nil %>水曜

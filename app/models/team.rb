@@ -57,7 +57,7 @@ class Team < ApplicationRecord
 
     #活動曜日による絞り込み
     scope :get_by_day_of_week, ->(day_of_week) {
-        where("day_of_week like?", "%#{day_of_week}%")
+        where(arel_table[:day_of_week].matches "%#{day_of_week}%")
         }
 
     #掲載状況による絞り込み

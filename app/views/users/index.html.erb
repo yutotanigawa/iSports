@@ -28,25 +28,36 @@
 			<div class="users-index card">
 					<div class="card-header text-white bg-dark text-center">会員一覧 / 検索結果
 					</div>
-                    <% @users.each do |user| %>
-					<div class="team-content">
-						<div class="row">
-							<div class="col-md-5 team-content-left  text-center">
-								<%= link_to user_path(user), class: "user_#{user.id}"  do %>
-									<%= attachment_image_tag(user,:profile_image, fallback: asset_path("no-image.png"), size:"130x130",style:"border-radius:10px;") %>
-									<br><span style="color:black;"><%= user.name %>(<%= user.gender_status_i18n %>)</span>
-								<% end %>
-									<br><br>
-									<%= link_to "ユーザー詳細", user_path(user), class:"btn btn-primary btn-sm"%>
-							</div>
-							<div class="col-md-7 user-content-right">
-								<span class="right-content-title">【年齢】</span><span class="right-detail"><%= user.age %>歳 </span>
-								<br><span class="right-content-title">【都道府県】</span><span class="right-detail"><%= user.prefecture %> </span>
-								<br><span class="right-content-title">【自己紹介】</span><span class="right-detail" style="font-size:13px;"><br><%= user.introduction %> </span>
-							</div>
-						</div>
-					</div>
-				<% end %>
+						<% if @users.exists? %>
+							<% @users.each do |user| %>
+								<div class="team-content">
+									<div class="row">
+										<div class="col-md-5 team-content-left  text-center">
+											<%= link_to user_path(user), class: "user_#{user.id}"  do %>
+												<%= attachment_image_tag(user,:profile_image, fallback: asset_path("no-image.png"), size:"130x130",style:"border-radius:10px;") %>
+												<br><span style="color:black;"><%= user.name %>(<%= user.gender_status_i18n %>)</span>
+											<% end %>
+												<br><br>
+												<%= link_to "ユーザー詳細", user_path(user), class:"btn btn-primary btn-sm"%>
+										</div>
+										<div class="col-md-7 user-content-right">
+											<span class="right-content-title">【年齢】</span><span class="right-detail"><%= user.age %>歳 </span>
+											<br><span class="right-content-title">【都道府県】</span><span class="right-detail"><%= user.prefecture %> </span>
+											<br><span class="right-content-title">【自己紹介】</span><span class="right-detail" style="font-size:13px;"><br><%= user.introduction %> </span>
+										</div>
+									</div>
+								</div>
+							<% end %>
+						<% else %>
+								<div class="team-content">
+									<div class="row text-center" style="margin-top:100px; margin-bottom:100px;">
+										<div class="col-md-8 mx-auto">
+											<h5>該当会員は存在しません。</h5>
+										</div>
+									</div>
+								</div>
+						<% end %>
+
             </div>
         </div>
     </div>
