@@ -66,6 +66,7 @@ end
 # 本番環境用のgem
 group :production do
   gem 'mysql2'
+  gem 'aws-sdk'
 
 end
 
