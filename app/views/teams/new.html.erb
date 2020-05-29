@@ -34,14 +34,7 @@
 						<div class="field-registration">
 							<br><%= f.label :活動曜日 %> <span class="badge badge-danger">必須</span>
 							<br>
-							<%= f.check_box :day_of_week, {multiple: true}, "日曜", nil %>日曜
-							<%= f.check_box :day_of_week, {multiple: true}, "月曜", nil %>月曜
-							<%= f.check_box :day_of_week, {multiple: true}, "火曜", nil %>火曜
-							<%= f.check_box :day_of_week, {multiple: true}, "水曜", nil %>水曜
-							<%= f.check_box :day_of_week, {multiple: true}, "木曜", nil %>木曜
-							<%= f.check_box :day_of_week, {multiple: true}, "金曜", nil %>金曜
-							<%= f.check_box :day_of_week, {multiple: true}, "土曜", nil %>土曜
-							<%= f.check_box :day_of_week, {multiple: true}, "未定", nil %>未定
+							<%= f.collection_check_boxes(:day_of_week_ids, DayOfWeek.all, :id, :name) %>
 						</div>
 						<div class="field-registration">
 							<br><%= f.label :チームの拠点（練習会場等）%> <p style="font-size:12px; display:inline; color:gray;"><br>※住所が有効だった場合チームの詳細ページにGoogleマップが表示されます。</p>

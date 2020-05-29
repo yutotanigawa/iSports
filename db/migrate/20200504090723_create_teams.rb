@@ -6,7 +6,6 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :team_image_id
       t.integer :prefecture, null: false
-      t.string :day_of_week, null: false
       t.integer :frequency, null: false
       t.text :introduction, null: false
       t.integer :publication_status, null: false, default: 0

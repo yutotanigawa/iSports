@@ -49,7 +49,7 @@
             </thead>
             <tbody>
                 <tr>
-                <td><%= @team.day_of_week %></td>
+                <td><% @team.day_of_weeks.each do |w| %><%= w.name %><% end %></td>
                 </tr>
             </tbody>
             </table>

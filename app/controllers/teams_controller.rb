@@ -16,8 +16,15 @@ class TeamsController < ApplicationController
             if params[:genre_id].present?
             @teams = @teams.get_by_genre_id(params[:genre_id])
             end
-            if params[:day_of_week].present?
-            @teams = @teams.get_by_day_of_week(params[:day_of_week])
+            if params[:team].present?
+                if params[:team][:day_of_week_ids].present?
+                    weeks = params[:team][:day_of_week_ids]
+                    # 中間テーブルの中から 同じteam_idでday_of_week_idが パラメーター通りのものを抽出し、weeksにおいて同数の条件をさらに抽出？。
+                    matchAllWeeks = ActivationDay.where(day_of_week_id: weeks).group(:team_id).having('count(team_id) = ?', weeks.length)
+                    # 配列で要素を取り出せるようにする
+                    teamIds = matchAllWeeks.map(&:team_id)
+                    @teams = @teams.where(id: teamIds)
+                end
             end
     end
 
@@ -32,7 +39,6 @@ class TeamsController < ApplicationController
 
     def create
         @team = Team.new(team_params)
-        @team.day_of_week = params[:team][:day_of_week].join("/")
         @user = current_user
         @team.user_id = current_user.id
         if @team.save
@@ -58,7 +64,7 @@ class TeamsController < ApplicationController
 
     private
     def team_params
-        params.require(:team).permit(:genre_id, :user_id, :name, :introduction,:team_image, :prefecture, :frequency, :address, :latitude, :longitude, :publication_status, day_of_week:[])
+        params.require(:team).permit(:genre_id, :user_id, :name, :introduction,:team_image, :prefecture, :frequency, :address, :latitude, :longitude, :publication_status, {day_of_week_ids: []})
     end
 
     # def day_of_week_string

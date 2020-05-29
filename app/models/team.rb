@@ -3,11 +3,13 @@ class Team < ApplicationRecord
     belongs_to :genre
     has_many :bookmarks, dependent: :destroy
     has_many :users, through: :bookmarks
+    has_many :activation_days
+    has_many :day_of_weeks, through: :activation_days
     attachment :team_image
 
     validates :name, length: {in: 2..15}
-    validates :day_of_week, presence: true
     validates :introduction, presence: true, length: {in: 10..200}
+    validates :day_of_weeks, presence: true
 
     #GoogleMapAPIにて住所を登録するカラム名
     geocoded_by :address
@@ -56,9 +58,9 @@ class Team < ApplicationRecord
         }
 
     #活動曜日による絞り込み
-    scope :get_by_day_of_week, ->(day_of_week) {
-        where(arel_table[:day_of_week].matches "%#{day_of_week}%")
-        }
+    # scope :get_by_day_of_week, ->(day_of_week_ids) {
+    #     where(arel_table[:day_of_week_ids].matches "%#{ids}%")
+    #     }
 
     #掲載状況による絞り込み
     scope :get_by_publication_status, ->(publication_status) {

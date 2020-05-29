@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_052240) do
+ActiveRecord::Schema.define(version: 2020_05_29_041116) do
+
+  create_table "activation_days", force: :cascade do |t|
+    t.integer "day_of_week_id"
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["day_of_week_id"], name: "index_activation_days_on_day_of_week_id"
+    t.index ["team_id"], name: "index_activation_days_on_team_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +47,12 @@ ActiveRecord::Schema.define(version: 2020_05_13_052240) do
     t.string "name"
     t.string "email"
     t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "day_of_weeks", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,7 +96,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_052240) do
     t.string "name", null: false
     t.string "team_image_id"
     t.integer "prefecture", null: false
-    t.string "day_of_week", null: false
     t.integer "frequency", null: false
     t.text "introduction", null: false
     t.integer "publication_status", default: 0, null: false

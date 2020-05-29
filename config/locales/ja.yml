@@ -1,7 +1,9 @@
 ja:
   activerecord:
     models:
-      user:
+      user: 会員
+      contact: お問い合わせ
+      team: チーム
     attributes:
       user:
         name: 名前
@@ -9,24 +11,15 @@ ja:
         password: パスワード
         birth_date: 生年月日
         gender_status: 性別
-
-  activerecord:
-    models:
-      team:
-    attributes:
+      contacts:
+        name: 名前
+        email: メールアドレス
+        body: 内容
       team:
         name: チーム名
         genre: 競技
         introduction: チーム紹介
-
-  activerecord:
-    models:
-      contact:
-    attributes:
-      contact:
-        name: 名前
-        email: メールアドレス
-        body: 内容
+        day_of_weeks: 活動曜日
 
   enums:
     user:
