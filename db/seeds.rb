@@ -14,3 +14,5 @@ DayOfWeek.create(name: "木曜")
 DayOfWeek.create(name: "金曜")
 DayOfWeek.create(name: "土曜")
 DayOfWeek.create(name: "未定")
+
+Admin.create(email: "admin@admin.com", password: "admin123")
