@@ -66,7 +66,6 @@ end
 # 本番環境用のgem
 group :production do
   gem 'mysql2'
-  gem 'aws-sdk'
 
 end
 
@@ -106,3 +105,4 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 gem 'refile-s3'
+gem 'aws-sdk'
