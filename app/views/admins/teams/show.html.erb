@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col-md-4 offset-2">
-            <%= attachment_image_tag(@user,:profile_image, fallback: asset_path("no-image.png"), size:"200x200") %>
+            <%= attachment_image_tag(@team,:profile_image, fallback: asset_path("no-image.png"), size:"200x200") %>
             <br><h4><%= @team.name %></h4>
         </div>
     </div>
