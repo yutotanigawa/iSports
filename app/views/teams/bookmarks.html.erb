@@ -22,7 +22,7 @@
 									<div class="col-md-7 team-content-right ">
 										<br><span class="right-content-title">【競技】</span><span class="right-detail"><%= team.genre.name %> </span>
 										<br><span class="right-content-title">【活動頻度】</span><span class="right-detail"><%= team.frequency %> </span>
-										<br><span class="right-content-title">【活動曜日】</span><span class="right-detail"><%= team.day_of_week %> </span>
+										<br><span class="right-content-title">【活動曜日】</span><span class="right-detail"><%= team.day_of_weeks.pluck(:name).join(",") </span>
 									</div>
 								</div>
 							</div>
