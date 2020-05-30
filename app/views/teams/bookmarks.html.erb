@@ -1,37 +1,43 @@
 <div class="container page-top">
 	<h3>気になるリスト</h3>
-	<div class="row">
-		<div class="col-md-8 mx-auto" style="margin-top:50px;">
+	<div class="row" style="margin-top:50px;">
+		<div class="col-md-8 mx-auto">
 			<div class="team-index card">
 					<div class="card-header text-white bg-dark text-center">チーム一覧
 					</div>
-					<% if @teams.exists? %>
-						<% @teams.each do |team| %>
-							<div class="team-content">
-								<div class="row">
-									<div class="col-md-5 team-content-left  text-center">
-										<%= link_to team_path(team), class: "team_#{team.id}"  do %>
-											<%= attachment_image_tag(team,:team_image, fallback: asset_path("no-image.png"), size:"130x130",style:"border-radius:10px;") %>
-											<br><span style="color:black;"><%= team.name %>(<%= team.prefecture %>)</span>
-										<% end %>
-											<br><br><span id="bookmark_button_<%= team.id %>">
-										<%= render "bookmark_button", team: team %>
-									</span>
-											<%= link_to "チーム詳細", team_path(team), class:"btn btn-primary btn-sm"%>
-									</div>
-									<div class="col-md-7 team-content-right ">
-										<br><span class="right-content-title">【競技】</span><span class="right-detail"><%= team.genre.name %> </span>
-										<br><span class="right-content-title">【活動頻度】</span><span class="right-detail"><%= team.frequency %> </span>
-										<br><span class="right-content-title">【活動曜日】</span><span class="right-detail"><%= team.day_of_weeks.pluck(:name).join(",") %></span>
-									</div>
+			<% if @teams.exists? %>
+				<% @teams.each do |team| %>
+					<%# 該当するチームがある場合とない場合のif文 %>
+						<div class="team-content">
+							<div class="row">
+								<div class="col-md-5 team-content-left  text-center">
+									<%= link_to team_path(team), class: "team_#{team.id}"  do %>
+										<%= attachment_image_tag(team,:team_image, fallback: asset_path("no-image.png"), size:"130x130",style:"border-radius:10px;") %>
+										<br><span style="color:black;"><%= team.name %>(<%= team.prefecture %>)</span>
+									<% end %>
+										<br><br>
+										<span id="bookmark_button_<%= team.id %>">
+											<%= render "bookmark_button", team: team %>
+										</span>
+										<%= link_to "チーム詳細", team_path(team), class:"btn btn-primary btn-sm"%>
+								</div>
+								<div class="col-md-7 team-content-right ">
+									<br><span class="right-content-title">【競技】</span><span class="right-detail"><%= team.genre.name %> </span>
+									<br><span class="right-content-title">【活動頻度】</span><span class="right-detail"><%= team.frequency %> </span>
+									<br><span class="right-content-title">【活動曜日】</span><span class="right-detail"><%= team.day_of_weeks.pluck(:name).join(",") %></span>
 								</div>
 							</div>
-						<% end %>
-					<% else %>
-						<div class="blank-content text-center" style="margin:100px;">
-							<h4>気になるリストに登録されたチームはありません</h4>
 						</div>
-					<% end %>
+				<% end %>
+			<% else %>
+						<div class="team-content">
+							<div class="row text-center" style="margin-top:100px; margin-bottom:100px;">
+								<div class="col-md-8 mx-auto">
+									<h5>気になるリストに登録されたチームはありません。</h5>
+								</div>
+							</div>
+						</div>
+			<% end %>
 			</div>
 		</div>
 	</div>
